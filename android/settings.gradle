@@ -1,0 +1,5 @@
+rootProject.name = 'Goldenbridge'
+
+include ':RNSound', ':app', ':react-native-webview-bridge'
+project(':RNSound').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-sound/android')
+project(':react-native-webview-bridge').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-webview-bridge/android')

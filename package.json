@@ -1,0 +1,19 @@
+{
+  "name": "Goldenbridge",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "geo-distance-js": "^1.0.0",
+    "geodist": "^0.2.1",
+    "geolocation-distances": "^2.0.2",
+    "merge": "^1.2.0",
+    "react": "15.1.0",
+    "react-native": "^0.27.1",
+    "react-native-sound": "^0.8.3",
+    "react-native-webview-bridge": "git+https://github.com/alinz/react-native-webview-bridge.git",
+    "react-timer-mixin": "^0.13.3"
+  }
+}
