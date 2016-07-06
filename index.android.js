@@ -149,16 +149,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  tb: {
-    borderColor: '#939393',
-    borderWidth: 10,
-    width: 10,
-  },
 });
 
 
