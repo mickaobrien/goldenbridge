@@ -178,13 +178,13 @@ var GeolocationExample = React.createClass({
   playPause: function() {
       if (this.state.sound) {
           var s = this.state.sound;
-          LayoutAnimation.linear(1000);
+          LayoutAnimation.linear();
           //LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
           this.setState({'sound': false});
           //alert(JSON.stringify(!this.state.sound && styles.playerHidden.height));
           setTimeout(function() { 
               //alert('bla');
-              LayoutAnimation.linear(1000);
+              LayoutAnimation.linear();
               this.setState({'sound': s});
           }.bind(this), 2000);
       }
@@ -252,7 +252,6 @@ const styles = StyleSheet.create({
   },
   playerHidden: {
     height: 0.001,
-    backgroundColor: '#00f0f0',
   },
 });
 
