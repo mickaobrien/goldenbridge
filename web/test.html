@@ -8,8 +8,12 @@
   <body>
     <div id="map"></div>
     <script>
-      var h = window.innerHeight;
-      document.querySelector('#map').style.height = h + 'px';
+      function makeFullHeight() {
+        var h = window.innerHeight;
+        document.querySelector('#map').style.height = h + 'px';
+      }
+      makeFullHeight();
+      window.onresize = makeFullHeight;
     </script>
     <script src="js/map.js"></script>
   </body>

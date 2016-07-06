@@ -14,12 +14,17 @@ import WebViewBridge from 'react-native-webview-bridge';
 import geodist from 'geodist';
 import {
   AppRegistry,
+  LayoutAnimation,
+  Platform,
   StyleSheet,
   Text,
-  View,
   TextInput,
   TouchableOpacity,
+  UIManager,
+  View,
 } from 'react-native';
+
+if (Platform.OS === 'android') { UIManager.setLayoutAnimationEnabledExperimental(true); }
 
 var Goldenbridge = React.createClass({
   getInitialState() {
@@ -115,19 +120,17 @@ var GeolocationExample = React.createClass({
       console.log(position);
       this.setState({position});
     });
-    this.setInterval(function() {
-        //console.log('Distance: ' + this.getDistance([53.335703727844745, -6.317653656005859], [53.33628991496072, -6.317787766456604]));
-        //console.log('locs === ' + JSON.stringify(this.props.points[1]));
-        if (this.state.sound) {
-            this.state.sound.getCurrentTime((time, isPlaying) => {
-                this.setState({
-                    'currentTime': time,
-                    'playing': isPlaying,
-                    'progress': time/this.state.sound.getDuration(),
-                });
-            });
-        }
-    }, 100);
+    //this.setInterval(function() {
+        //if (this.state.sound) {
+            //this.state.sound.getCurrentTime((time, isPlaying) => {
+                //this.setState({
+                    //'currentTime': time,
+                    //'playing': isPlaying,
+                    //'progress': time/this.state.sound.getDuration(),
+                //});
+            //});
+        //}
+    //}, 100);
   },
 
   componentWillUnmount: function() {
@@ -174,14 +177,26 @@ var GeolocationExample = React.createClass({
 
   playPause: function() {
       if (this.state.sound) {
-          console.log('playing: ' + this.state.playing);
-          this.state.playing ? this.pauseSound() : this.playSound();
+          var s = this.state.sound;
+          LayoutAnimation.linear(1000);
+          //LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+          this.setState({'sound': false});
+          //alert(JSON.stringify(!this.state.sound && styles.playerHidden.height));
+          setTimeout(function() { 
+              //alert('bla');
+              LayoutAnimation.linear(1000);
+              this.setState({'sound': s});
+          }.bind(this), 2000);
       }
+      //if (this.state.sound) {
+          //console.log('playing: ' + this.state.playing);
+          //this.state.playing ? this.pauseSound() : this.playSound();
+      //}
   },
 
   render: function() {
     return (
-      <View>
+      <View style={[styles.player, !this.state.sound && styles.playerHidden]}>
         <ProgressBar progress={this.state.progress} />
         <TouchableOpacity onPress={this.playPause}>
           <Text style={styles.button}>{this.state.playing ? 'Pause' : 'Play'}</Text>
@@ -200,7 +215,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
     backgroundColor: '#ffff00',
-    height: 10,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    top: 0,
   },
   container: {
     flex: 1,
@@ -222,6 +241,18 @@ const styles = StyleSheet.create({
     borderColor: '#939393',
     borderWidth: 10,
     width: 10,
+  },
+  player: {
+    height: 50,
+    position: 'absolute',
+    backgroundColor: '#F5FCFF',
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  playerHidden: {
+    height: 0.001,
+    backgroundColor: '#00f0f0',
   },
 });
 
