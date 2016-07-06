@@ -4,11 +4,7 @@
  */
 
 import React, { Component } from 'react';
-// Import the react-native-sound module
-//var Sound = require('react-native-sound');
-import ProgressBar from './components/progress-bar';
-import Sound from 'react-native-sound';
-import TimerMixin from 'react-timer-mixin';
+import AudioPlayer from './components/player';
 import WebViewBridge from 'react-native-webview-bridge';
 //import getLocation from 'geolocation-distances';
 import geodist from 'geodist';
@@ -73,15 +69,11 @@ var Goldenbridge = React.createClass({
 
 
 var GeolocationExample = React.createClass({
-  mixins: [TimerMixin],
   watchID: (null: ?number),
 
   getInitialState: function() {
     return {
       position: 'unknown',
-      playing: false,
-      currentTime: 0,
-      progress: 0,
       activePoint: null,
     };
   },
@@ -107,7 +99,6 @@ var GeolocationExample = React.createClass({
   },
 
   componentDidMount: function() {
-    this.loadSound();
     navigator.geolocation.getCurrentPosition(
       (position) => {
         this.setState({position});
@@ -120,89 +111,15 @@ var GeolocationExample = React.createClass({
       console.log(position);
       this.setState({position});
     });
-    //this.setInterval(function() {
-        //if (this.state.sound) {
-            //this.state.sound.getCurrentTime((time, isPlaying) => {
-                //this.setState({
-                    //'currentTime': time,
-                    //'playing': isPlaying,
-                    //'progress': time/this.state.sound.getDuration(),
-                //});
-            //});
-        //}
-    //}, 100);
   },
 
   componentWillUnmount: function() {
     navigator.geolocation.clearWatch(this.watchID);
   },
 
-  loadSound: function() {
-    var filename = 'music.mp3';
-    //var filename = 'moo.mp3';
-    //var filename = 'one.mp3';
-    //console.log('MB: ' + Sound);
-    var sound = new Sound(filename, Sound.MAIN_BUNDLE, (error) => {
-    //var sound = new Sound(filename, './', (error) => {
-      if (error) {
-        console.log('failed to load the sound', error);
-      } else { // loaded successfully
-        console.log('duration in seconds: ' + sound.getDuration() +
-            'number of channels: ' + sound.getNumberOfChannels());
-        this.setState({'sound': sound});
-      }
-    });
-  },
-
-
-  playSound: function() {
-    if (this.state.sound) {
-        this.state.sound.play((success) => {
-            if (success) {
-                alert('finished playing');
-            } else {
-                alert('playback failed');
-            }
-        });
-        //this.state.sound.setCurrentTime(this.state.sound.getDuration() - 5);
-    }
-  },
-
-  pauseSound: function() {
-    if (this.state.sound) {
-        this.state.sound.pause();
-        // TODO manage playing state using getCurrentTime
-    }
-  },
-
-  playPause: function() {
-      if (this.state.sound) {
-          var s = this.state.sound;
-          LayoutAnimation.linear();
-          //LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
-          this.setState({'sound': false});
-          //alert(JSON.stringify(!this.state.sound && styles.playerHidden.height));
-          setTimeout(function() { 
-              //alert('bla');
-              LayoutAnimation.linear();
-              this.setState({'sound': s});
-          }.bind(this), 2000);
-      }
-      //if (this.state.sound) {
-          //console.log('playing: ' + this.state.playing);
-          //this.state.playing ? this.pauseSound() : this.playSound();
-      //}
-  },
-
   render: function() {
     return (
-      <View style={[styles.player, !this.state.sound && styles.playerHidden]}>
-        <ProgressBar progress={this.state.progress} />
-        <TouchableOpacity onPress={this.playPause}>
-          <Text style={styles.button}>{this.state.playing ? 'Pause' : 'Play'}</Text>
-        </TouchableOpacity>
-      <Text>{this.state.progress} - {JSON.stringify(this.state.position.coords)}</Text>
-      </View>
+        <AudioPlayer />
     );
   }
 });
@@ -241,17 +158,6 @@ const styles = StyleSheet.create({
     borderColor: '#939393',
     borderWidth: 10,
     width: 10,
-  },
-  player: {
-    height: 50,
-    position: 'absolute',
-    backgroundColor: '#F5FCFF',
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-  playerHidden: {
-    height: 0.001,
   },
 });
 
