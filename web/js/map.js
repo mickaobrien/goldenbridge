@@ -11,32 +11,16 @@ function log(s) {
         },
 
         drawMap: function() {
-            var map = L.mapbox.map('map');
-            map.zoomControl.removeFrom(map);
-            //map.setView([53.33570, -6.317653656005859], 16);
+            var map = L.mapbox.map('map', '', {maxZoom: 17, minZoom: 16});
+            //var map = L.mapbox.map('map');
+            //map.zoomControl.removeFrom(map);
             map.setView([53.336981, -6.319574], 16);
 
-            //map.zoomControl = false;
-            //this.disableInteractivity(map);
-            //var stamenLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', {
-                  //attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
-            //}).addTo(map);
-            var customLayer = L.mapbox.tileLayer('-mick-.j15dkof3', {
+            var customLayer = L.tileLayer('https://api.mapbox.com/styles/v1/-mick-/ciqdnbv83000ie4mdhs0szmcs/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiLW1pY2stIiwiYSI6InBoM0pvdXMifQ.cZxAMQ7D-nENcB5SPagqpg', {
                   attribution: 'Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
             }).addTo(map);
 
             this.map = map;
-        },
-
-        disableInteractivity: function(map) {
-            //Disable drag and zoom handlers.
-            map.dragging.disable();
-            map.touchZoom.disable();
-            map.doubleClickZoom.disable();
-            map.scrollWheelZoom.disable();
-
-            // Disable tap handler, if present.
-            if (map.tap) map.tap.disable();
         },
 
         drawCircle: function(location) {
