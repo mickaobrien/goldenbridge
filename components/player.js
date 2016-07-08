@@ -85,14 +85,21 @@ var AudioPlayer = React.createClass({
     }
   },
 
+  tapProgressBar(progress) {
+    this.state.sound.setCurrentTime(progress*this.state.sound.getDuration());
+  },
+
   render: function() {
     return (
       <View style={[styles.player, !this.state.sound && styles.playerHidden]}>
-      <ProgressBar progress={this.state.progress} />
-      <TouchableOpacity onPress={this.playPause}>
-      <Text style={styles.button}>{this.state.playing ? 'Pause' : 'Play'}</Text>
-      </TouchableOpacity>
-      <Text>{this.state.progress} - </Text>
+        <ProgressBar
+            progress={this.state.progress}
+            onTap={this.tapProgressBar}
+        />
+        <TouchableOpacity onPress={this.playPause}>
+          <Text style={styles.button}>{this.state.playing ? 'Pause' : 'Play'}</Text>
+        </TouchableOpacity>
+        <Text>{this.state.progress} - </Text>
       </View>
     );
   },

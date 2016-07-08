@@ -8,8 +8,19 @@ import {
 
 var ProgressBar = React.createClass({
 
+  onStartShouldSetResponder(evt) {
+    return true;
+  },
+
   getInitialState() {
     return {width: 0};
+  },
+
+  updateProgress(event) {
+    var x = event.nativeEvent.locationX;
+    var progress = x/this.state.width;
+    console.log('click at ' + x/this.state.width);
+    this.props.onTap(progress);
   },
 
   onLayout() {
@@ -22,6 +33,8 @@ var ProgressBar = React.createClass({
 
     return (
       <View style={styles.background} ref="progressBar"
+            onStartShouldSetResponder={this.onStartShouldSetResponder}
+            onResponderRelease={this.updateProgress}
             onLayout={this.onLayout}>
         <View style={[styles.fill, { width: this.props.progress*this.state.width }]}/>
       </View>

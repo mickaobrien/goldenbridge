@@ -104,7 +104,7 @@ var GeolocationExample = React.createClass({
         this.setState({position});
         this.getNearestPoint();
       },
-      (error) => console.log(error.message),
+      (error) => console.log('geolocation error: ' + error.message),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
     this.watchID = navigator.geolocation.watchPosition((position) => {
