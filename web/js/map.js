@@ -1,7 +1,3 @@
-function log(s) {
-  document.querySelector('#console').innerText = s;
-}
-
 (function(){
   var Fringe = {
 

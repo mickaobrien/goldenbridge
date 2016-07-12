@@ -92,14 +92,16 @@ var AudioPlayer = React.createClass({
   render: function() {
     return (
       <View style={[styles.player, !this.state.sound && styles.playerHidden]}>
+        <TouchableOpacity
+            style={styles.playPause}
+            onPress={this.playPause}>
+          <Text style={styles.button}>{this.state.playing ? '▌▌' : '▶'}</Text>
+        </TouchableOpacity>
         <ProgressBar
+            style={styles.progress} 
             progress={this.state.progress}
             onTap={this.tapProgressBar}
         />
-        <TouchableOpacity onPress={this.playPause}>
-          <Text style={styles.button}>{this.state.playing ? 'Pause' : 'Play'}</Text>
-        </TouchableOpacity>
-        <Text>{this.state.progress} - </Text>
       </View>
     );
   },
@@ -108,15 +110,23 @@ var AudioPlayer = React.createClass({
 
 const styles = StyleSheet.create({
   player: {
-    height: 50,
+    height: 20,
     position: 'absolute',
     backgroundColor: '#F5FCFF',
     left: 0,
     right: 0,
-    bottom: 0,
+    bottom: 1,
+    flexDirection: 'row',
   },
   playerHidden: {
     height: 0.001,
+  },
+  playPause: {
+    //flex: 0.1,
+    width: 20,
+  },
+  progress: {
+    flex: 1,
   },
 });
 

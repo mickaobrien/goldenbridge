@@ -25,7 +25,7 @@ var ProgressBar = React.createClass({
 
   onLayout() {
     this.refs.progressBar.measure((x, y, w, h, px, py) => {
-        this.setState({width: w});
+      this.setState({width: w});
     });
   },
 
@@ -33,9 +33,9 @@ var ProgressBar = React.createClass({
 
     return (
       <View style={styles.background} ref="progressBar"
-            onStartShouldSetResponder={this.onStartShouldSetResponder}
-            onResponderRelease={this.updateProgress}
-            onLayout={this.onLayout}>
+          onStartShouldSetResponder={this.onStartShouldSetResponder}
+          onResponderRelease={this.updateProgress}
+          onLayout={this.onLayout}>
         <View style={[styles.fill, { width: this.props.progress*this.state.width }]}/>
       </View>
     );
@@ -45,12 +45,13 @@ var ProgressBar = React.createClass({
 const styles = StyleSheet.create({
   background: {
     backgroundColor: '#bbbbbb',
-    height: 5,
-    overflow: 'hidden'
+    height: 20,
+    flex: 1,
+    //overflow: 'hidden'
   },
   fill: {
     backgroundColor: '#3b5998',
-    height: 5
+    height: 20
   }
 });
 
