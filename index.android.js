@@ -24,23 +24,31 @@ if (Platform.OS === 'android') { UIManager.setLayoutAnimationEnabledExperimental
 
 var Goldenbridge = React.createClass({
   getInitialState() {
-      return {points: this.loadPoints()};
+    return {points: this.loadPoints()};
   },
 
   loadPoints() {
-      return require('./data/locations.json');
+    return require('./data/locations.json');
   },
 
-  sendMessage() {
-      //const { webviewbridge } = this.refs;
-      console.log('sending message');
+  sendMessage(data) {
+    //const { webviewbridge } = this.refs;
+    console.log('sending message');
+    if (typeof(data) != 'object') {
       this.refs.webviewbridge.sendToBridge(JSON.stringify(this.state.points));
-      //JSON.stringify(locations)
+    } else {
+      this.refs.webviewbridge.sendToBridge(JSON.stringify(data));
+    }
+    //JSON.stringify(locations)
   },
 
   testState() {
-      this.setState({points: {1: ['ha']}});
-      console.log(this.state.points);
+    this.setState({points: {1: ['ha']}});
+    console.log(this.state.points);
+  },
+
+  updatePosition(position) {
+    this.sendMessage({currentPosition: position.coords});
   },
 
   render() {
@@ -60,6 +68,7 @@ var Goldenbridge = React.createClass({
         />
         <GeolocationExample
             points={this.state.points}
+            onPositionUpdate={this.updatePosition}
         />
       </View>
     );
@@ -79,37 +88,42 @@ var GeolocationExample = React.createClass({
   },
 
   getDistance: function(l1, l2) {
-      var p1 = {lat: l1[0], lon: l1[1]};
-      var p2 = {lat: l2[0], lon: l2[1]};
-      return geodist(p1, p2, {exact: true, unit: 'meters'});
+    var p1 = {lat: l1[0], lon: l1[1]};
+    var p2 = {lat: l2[0], lon: l2[1]};
+    return geodist(p1, p2, {exact: true, unit: 'meters'});
   },
 
   getNearestPoint: function() {
-      var position = this.state.position.coords;
-      var coords = [position.latitude, position.longitude];
-      var points = this.props.points;
-      Object.keys(points).forEach(function(key) {
-          var location = points[key].coordinates;
-          console.log('dist to ' + key + ' is ' + this.getDistance(coords, location));
-          if (this.getDistance(coords, location) < 10) {
-              this.setState({activePoint: key});
-              alert(key);
-          }
-      }, this);
+    var position = this.state.position.coords;
+    var coords = [position.latitude, position.longitude];
+    var points = this.props.points;
+    Object.keys(points).forEach(function(key) {
+      var location = points[key].coordinates;
+      if (this.getDistance(coords, location) < 10) {
+        this.setState({activePoint: key});
+        //alert(key);
+      }
+    }, this);
   },
 
   componentDidMount: function() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         this.setState({position});
+        console.log('getCurrentPosition');
+        console.log(JSON.stringify(this.state.position));
+        this.props.onPositionUpdate(position);
         this.getNearestPoint();
       },
       (error) => console.log('geolocation error: ' + error.message),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
     this.watchID = navigator.geolocation.watchPosition((position) => {
-      console.log(position);
+      this.props.onPositionUpdate(position);
       this.setState({position});
+      alert('watchid');
+      alert(JSON.stringify(position));
+      console.log(position);
     });
   },
 
@@ -119,7 +133,11 @@ var GeolocationExample = React.createClass({
 
   render: function() {
     return (
-        <AudioPlayer />
+      <View>
+        <AudioPlayer>
+          <Text>{JSON.stringify(this.state.position)}</Text>
+        </AudioPlayer>
+      </View>
     );
   }
 });
