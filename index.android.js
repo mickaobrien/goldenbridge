@@ -5,6 +5,7 @@
 
 import React, { Component } from 'react';
 import AudioPlayer from './components/player';
+import MusicPlayer from './components/music-player';
 import WebViewBridge from 'react-native-webview-bridge';
 //import getLocation from 'geolocation-distances';
 import geodist from 'geodist';
@@ -107,6 +108,7 @@ var GeolocationExample = React.createClass({
   },
 
   componentDidMount: function() {
+    MusicPlayer.playSound('music.mp3', -1);
     navigator.geolocation.getCurrentPosition(
       (position) => {
         this.setState({position});
