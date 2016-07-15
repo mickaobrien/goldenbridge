@@ -86,7 +86,7 @@ var GeolocationExample = React.createClass({
     return {
       //position: 'unknown',
       position: {coords: {latitude:0, longitude:0}},
-      activePoint: null,
+      activePoint: {audio: null, visited: null},
     };
   },
 
@@ -103,33 +103,22 @@ var GeolocationExample = React.createClass({
     Object.keys(points).forEach(function(key) {
       var location = points[key].coordinates;
       if (this.getDistance(coords, location) < 10) {
-        this.setState({activePoint: key});
-        //alert(key);
+        this.setState({activePoint: points[key]});
+        alert('nearest point is ' + key + '\n' + JSON.stringify(this.state.activePoint));
       }
     }, this);
   },
 
   componentDidMount: function() {
     MusicPlayer.playSound('music.mp3', -1);
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({position});
-        console.log('getCurrentPosition');
-        console.log(JSON.stringify(this.state.position));
-        this.props.onPositionUpdate(position);
-        this.getNearestPoint();
-      },
-      (error) => console.log('geolocation error: ' + error.message),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
     this.watchID = navigator.geolocation.watchPosition(
       (position) => {
         this.props.onPositionUpdate(position);
         this.setState({position});
+        this.getNearestPoint();
       },
       (error) => {
         console.log('watchPosition error: ' + error.message);
-        alert('watchPosition error: ' + error.message);
       },
       {enableHighAccuracy: true, timeout: 60000, maximumAge: 1000, distanceFilter: 1}
     );
@@ -142,10 +131,10 @@ var GeolocationExample = React.createClass({
 
   render: function() {
     return (
-      <View>
-        <Text>{this.state.position.coords.latitude}</Text>
-        <Text>{this.state.position.coords.longitude}</Text>
-      </View>
+      <AudioPlayer
+          sound={this.state.activePoint.audio}
+          autoplay={!this.state.activePoint.visited}
+      />
     );
   }
 });

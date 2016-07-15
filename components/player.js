@@ -23,8 +23,11 @@ var AudioPlayer = React.createClass({
     };
   },
 
-  componentDidMount: function() {
-    this.loadSound();
+  componentWillReceiveProps: function(props) {
+    if (!props.sound || props.sound == this.props.sound) return;
+    if (this.state.sound) this.state.sound.stop();
+    this.loadSound(props.sound, props.autoplay);
+    //TODO make this a separate method and stop when audio stops
     this.setInterval(function() {
       if (this.state.sound) {
         this.state.sound.getCurrentTime((time, isPlaying) => {
@@ -38,8 +41,7 @@ var AudioPlayer = React.createClass({
     }, 100);
   },
 
-  loadSound: function() {
-    var filename = 'music.mp3';
+  loadSound: function(filename, autoplay) {
     var sound = new Sound(filename, Sound.MAIN_BUNDLE, (error) => {
       if (error) {
         console.log('failed to load the sound', error);
@@ -47,6 +49,9 @@ var AudioPlayer = React.createClass({
         console.log('duration in seconds: ' + sound.getDuration() +
                     'number of channels: ' + sound.getNumberOfChannels());
         this.setState({'sound': sound});
+        if (autoplay) {
+          this.playSound();
+        }
       }
     });
   },
@@ -61,6 +66,7 @@ var AudioPlayer = React.createClass({
     if (this.state.sound) {
       this.state.sound.play((success) => {
         if (success) {
+          //TODO mark visited when finished playing
           alert('finished playing');
         } else {
           alert('playback failed');
@@ -70,17 +76,7 @@ var AudioPlayer = React.createClass({
   },
 
   playPause: function() {
-    //if (this.state.sound) {
-      //var s = this.state.sound;
-      //LayoutAnimation.linear();
-      //this.setState({'sound': false});
-      //setTimeout(function() {
-        //LayoutAnimation.linear();
-        //this.setState({'sound': s});
-      //}.bind(this), 2000);
-    //}
     if (this.state.sound) {
-      console.log('playing: ' + this.state.playing);
       this.state.playing ? this.pauseSound() : this.playSound();
     }
   },
@@ -122,7 +118,6 @@ const styles = StyleSheet.create({
     height: 0.001,
   },
   playPause: {
-    //flex: 0.1,
     width: 20,
   },
   progress: {
