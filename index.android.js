@@ -49,6 +49,7 @@ var Goldenbridge = React.createClass({
   },
 
   updatePosition(position) {
+    console.log('updating position');
     this.sendMessage({currentPosition: position.coords});
   },
 
@@ -83,7 +84,8 @@ var GeolocationExample = React.createClass({
 
   getInitialState: function() {
     return {
-      position: 'unknown',
+      //position: 'unknown',
+      position: {coords: {latitude:0, longitude:0}},
       activePoint: null,
     };
   },
@@ -120,25 +122,29 @@ var GeolocationExample = React.createClass({
       (error) => console.log('geolocation error: ' + error.message),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-      this.props.onPositionUpdate(position);
-      this.setState({position});
-      alert('watchid');
-      alert(JSON.stringify(position));
-      console.log(position);
-    });
+    this.watchID = navigator.geolocation.watchPosition(
+      (position) => {
+        this.props.onPositionUpdate(position);
+        this.setState({position});
+      },
+      (error) => {
+        console.log('watchPosition error: ' + error.message);
+        alert('watchPosition error: ' + error.message);
+      },
+      {enableHighAccuracy: true, timeout: 60000, maximumAge: 1000, distanceFilter: 1}
+    );
   },
 
   componentWillUnmount: function() {
     navigator.geolocation.clearWatch(this.watchID);
+    MusicPlayer.pause();
   },
 
   render: function() {
     return (
       <View>
-        <AudioPlayer>
-          <Text>{JSON.stringify(this.state.position)}</Text>
-        </AudioPlayer>
+        <Text>{this.state.position.coords.latitude}</Text>
+        <Text>{this.state.position.coords.longitude}</Text>
       </View>
     );
   }

@@ -4,12 +4,13 @@
     init: function() {
       L.mapbox.accessToken = 'pk.eyJ1IjoiLW1pY2stIiwiYSI6InBoM0pvdXMifQ.cZxAMQ7D-nENcB5SPagqpg';
       this.drawMap();
+      this.currentPosition = this.drawCircle({coordinates: [0, 0]}, 'blue');
     },
 
     drawMap: function() {
       var map = L.mapbox.map('map', '', {maxZoom: 17, minZoom: 16});
       //var map = L.mapbox.map('map');
-      //map.zoomControl.removeFrom(map);
+      map.zoomControl.removeFrom(map);
       map.setView([53.336981, -6.319574], 16);
 
       var customLayer = L.tileLayer('https://api.mapbox.com/styles/v1/-mick-/ciqdnbv83000ie4mdhs0szmcs/tiles/256/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken, {
@@ -26,6 +27,7 @@
       var markerOptions = {color: color, fillOpacity: '0.9', stroke: false, radius: 5};
       var circle = L.circleMarker(location.coordinates, markerOptions);
       circle.addTo(this.map);
+      return circle;
     },
 
     drawDots: function(locations) {
@@ -47,7 +49,7 @@
     var data = JSON.parse(message);
     if (message.indexOf('currentPosition') > -1) {
       var coordinates = [data.currentPosition.latitude, data.currentPosition.longitude];
-      Fringe.drawCircle({coordinates: coordinates}, 'blue');
+      Fringe.currentPosition.setLatLng(coordinates);
     } else {
       Fringe.drawDots(data);
     }
