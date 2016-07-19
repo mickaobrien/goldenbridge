@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
-    backgroundColor: '#ffff00',
+    backgroundColor: '#F6F6F4',
     position: 'absolute',
     bottom: 0,
     left: 0,
