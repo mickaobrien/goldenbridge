@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Sound from 'react-native-sound';
 import TimerMixin from 'react-timer-mixin';
 
@@ -91,10 +92,12 @@ var AudioPlayer = React.createClass({
         <TouchableOpacity
             style={styles.playPause}
             onPress={this.playPause}>
-          <Text style={styles.button}>{this.state.playing ? '▌▌' : '▶'}</Text>
+          <Icon
+            style={styles.playPauseIcon}
+            name={this.state.playing ? 'pause' : 'play'} />
         </TouchableOpacity>
         <ProgressBar
-            style={styles.progress} 
+            style={styles.progress}
             progress={this.state.progress}
             onTap={this.tapProgressBar}
         />
@@ -118,7 +121,13 @@ const styles = StyleSheet.create({
     height: 0.001,
   },
   playPause: {
-    width: 20,
+    width: 24,
+  },
+  playPauseIcon: {
+    fontSize: 16,
+    margin: 2,
+    marginLeft: 6,
+    alignItems: 'center',
   },
   progress: {
     flex: 1,
