@@ -6,6 +6,7 @@
 import React, { Component } from 'react';
 import AudioPlayer from './components/player';
 import MusicPlayer from './components/music-player';
+import store from 'react-native-simple-store';
 import WebViewBridge from 'react-native-webview-bridge';
 //import getLocation from 'geolocation-distances';
 import geodist from 'geodist';
@@ -25,11 +26,34 @@ if (Platform.OS === 'android') { UIManager.setLayoutAnimationEnabledExperimental
 
 var Goldenbridge = React.createClass({
   getInitialState() {
-    return {points: this.loadPoints()};
+    return {points: {}};
+  },
+
+  componentDidMount() {
+    this.loadData();
   },
 
   loadPoints() {
     return require('./data/locations.json');
+  },
+
+  saveData() {
+    alert('save');
+    store.save('points', this.state.points).catch(error => {
+        alert('storage error:\n' + JSON.stringify(error));
+    });
+  },
+
+  loadData() {
+    store.get('points').then(
+      (points) => {
+        if (points !== null) {
+          this.setState({points});
+        } else {
+          this.setState({points: this.loadPoints()});
+        }
+      }
+    );
   },
 
   sendMessage(data) {
@@ -48,6 +72,15 @@ var Goldenbridge = React.createClass({
     this.sendMessage({currentPosition: position.coords});
   },
 
+  markPointVisited(key) {
+    //TODO ugh, this is a mess...
+    var points = this.state.points;
+    points[key].visited = true;
+    this.setState({points});
+    this.sendMessage();
+    this.saveData();
+  },
+
   render() {
     return (
       <View style={styles.container}>
@@ -63,6 +96,7 @@ var Goldenbridge = React.createClass({
         <GeolocationExample
             points={this.state.points}
             onPositionUpdate={this.updatePosition}
+            onPointVisited={this.markPointVisited}
         />
       </View>
     );
@@ -95,6 +129,7 @@ var GeolocationExample = React.createClass({
     Object.keys(points).forEach(function(key) {
       var location = points[key].coordinates;
       if (this.getDistance(coords, location) < 10) {
+        this.setState({activeKey: key});
         this.setState({activePoint: points[key]});
         //alert('nearest point is ' + key + '\n' + JSON.stringify(this.state.activePoint));
       }
@@ -121,11 +156,16 @@ var GeolocationExample = React.createClass({
     MusicPlayer.pause();
   },
 
+  markVisited: function() {
+    this.props.onPointVisited(this.state.activeKey);
+  },
+
   render: function() {
     return (
       <AudioPlayer
           sound={this.state.activePoint.audio}
           autoplay={!this.state.activePoint.visited}
+          onCompletion={this.markVisited}
       />
     );
   }

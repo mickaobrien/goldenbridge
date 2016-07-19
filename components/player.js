@@ -67,8 +67,8 @@ var AudioPlayer = React.createClass({
     if (this.state.sound) {
       this.state.sound.play((success) => {
         if (success) {
-          //TODO mark visited when finished playing
-          alert('finished playing');
+          this.props.onCompletion();
+          //TODO mark visited when finished playing, kill setInterval
         } else {
           alert('playback failed');
         }
