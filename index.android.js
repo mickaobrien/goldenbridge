@@ -43,11 +43,6 @@ var Goldenbridge = React.createClass({
     //JSON.stringify(locations)
   },
 
-  testState() {
-    this.setState({points: {1: ['ha']}});
-    console.log(this.state.points);
-  },
-
   updatePosition(position) {
     console.log('updating position');
     this.sendMessage({currentPosition: position.coords});
@@ -59,9 +54,6 @@ var Goldenbridge = React.createClass({
         <Text style={styles.welcome}>
           Goldenbridge Project
         </Text>
-        <TouchableOpacity onPress={this.testState}>
-          <Text>'Click!'</Text>
-        </TouchableOpacity>
         <WebViewBridge style={styles.web}
             ref="webviewbridge"
             onBridgeMessage={this.sendMessage}
@@ -104,7 +96,7 @@ var GeolocationExample = React.createClass({
       var location = points[key].coordinates;
       if (this.getDistance(coords, location) < 10) {
         this.setState({activePoint: points[key]});
-        alert('nearest point is ' + key + '\n' + JSON.stringify(this.state.activePoint));
+        //alert('nearest point is ' + key + '\n' + JSON.stringify(this.state.activePoint));
       }
     }, this);
   },

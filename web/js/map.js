@@ -22,7 +22,7 @@
 
     drawCircle: function(location, color) {
       if (!color) {
-        var color = location.visited ? 'gray' : 'pink';
+        var color = location.visited ? '#4F4F52' : '#B87333';
       }
       var markerOptions = {color: color, fillOpacity: '0.9', stroke: false, radius: 5};
       var circle = L.circleMarker(location.coordinates, markerOptions);
@@ -31,7 +31,9 @@
     },
 
     drawDots: function(locations) {
+      Fringe.i = 0;
       Object.keys(locations).forEach(function(key) {
+        Fringe.i++;
         Fringe.drawCircle(locations[key]);
       });
       var bounds = Object.keys(locations).map(function(key) {

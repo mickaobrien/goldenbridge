@@ -13,6 +13,7 @@
     "react": "15.1.0",
     "react-native": "^0.27.1",
     "react-native-sound": "^0.8.3",
+    "react-native-vector-icons": "^2.0.3",
     "react-native-webview-bridge": "git+https://github.com/alinz/react-native-webview-bridge.git",
     "react-timer-mixin": "^0.13.3"
   }
