@@ -29,7 +29,7 @@ var AudioPlayer = React.createClass({
     if (this.state.sound) this.state.sound.stop();
     this.loadSound(props.sound, props.autoplay);
     //TODO make this a separate method and stop when audio stops
-    this.setInterval(function() {
+    this.timer = this.setInterval(function() {
       if (this.state.sound) {
         this.state.sound.getCurrentTime((time, isPlaying) => {
           this.setState({
@@ -67,6 +67,7 @@ var AudioPlayer = React.createClass({
     if (this.state.sound) {
       this.state.sound.play((success) => {
         if (success) {
+          clearInterval(this.timer);
           this.props.onCompletion();
           //TODO mark visited when finished playing, kill setInterval
         } else {
