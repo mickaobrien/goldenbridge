@@ -106,7 +106,6 @@ var Goldenbridge = React.createClass({
             javaScriptEnabled={true}
         />
         <Geolocation
-            points={this.state.points}
             onPositionUpdate={this.updatePosition}
         />
         <AudioPlayer
