@@ -31,9 +31,7 @@
     },
 
     drawDots: function(locations) {
-      Fringe.i = 0;
       Object.keys(locations).forEach(function(key) {
-        Fringe.i++;
         Fringe.drawCircle(locations[key]);
       });
       var bounds = Object.keys(locations).map(function(key) {

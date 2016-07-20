@@ -26,6 +26,7 @@ var AudioPlayer = React.createClass({
 
   componentWillReceiveProps: function(props) {
     if (!props.sound || props.sound == this.props.sound) return;
+    //TODO stop playing audio if !props.sound && this.props.sound
     if (this.state.sound) this.state.sound.stop();
     this.loadSound(props.sound, props.autoplay);
     //TODO make this a separate method and stop when audio stops
@@ -89,7 +90,7 @@ var AudioPlayer = React.createClass({
 
   render: function() {
     return (
-      <View style={[styles.player, !this.state.sound && styles.playerHidden]}>
+      <View style={[styles.player, !this.props.sound && styles.playerHidden]}>
         <TouchableOpacity
             style={styles.playPause}
             onPress={this.playPause}>

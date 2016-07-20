@@ -4,20 +4,17 @@
  */
 
 import React, { Component } from 'react';
-import AudioPlayer from './components/player';
-import MusicPlayer from './components/music-player';
 import store from 'react-native-simple-store';
 import WebViewBridge from 'react-native-webview-bridge';
-//import getLocation from 'geolocation-distances';
-import geodist from 'geodist';
+import AudioPlayer from './components/player';
+import Geolocation from './components/geolocation';
+import MusicPlayer from './components/music-player';
+import getNearestPoint from './components/helpers'
 import {
   AppRegistry,
-  LayoutAnimation,
   Platform,
   StyleSheet,
   Text,
-  TextInput,
-  TouchableOpacity,
   UIManager,
   View,
 } from 'react-native';
@@ -26,11 +23,16 @@ if (Platform.OS === 'android') { UIManager.setLayoutAnimationEnabledExperimental
 
 var Goldenbridge = React.createClass({
   getInitialState() {
-    return {points: {}};
+    return {
+      points: {},
+      position: {coords: {latitude:0, longitude:0}},
+      activePoint: {audio: null, visited: null},
+    };
   },
 
   componentDidMount() {
     this.loadData();
+    MusicPlayer.playSound('music.mp3', -1);
   },
 
   loadPoints() {
@@ -56,6 +58,10 @@ var Goldenbridge = React.createClass({
     );
   },
 
+  clearData() {
+    store.delete('points');
+  },
+
   sendMessage(data) {
     //const { webviewbridge } = this.refs;
     console.log('sending message');
@@ -70,12 +76,18 @@ var Goldenbridge = React.createClass({
   updatePosition(position) {
     console.log('updating position');
     this.sendMessage({currentPosition: position.coords});
+    var activePoint = getNearestPoint(this.state.points, position);
+    if (activePoint) {
+      this.setState({activePoint: this.state.points[activePoint]});
+    } else {
+      this.setState({activePoint: {audio: null, visited: null}});
+    }
   },
 
-  markPointVisited(key) {
+  markPointVisited() {
     //TODO ugh, this is a mess...
     var points = this.state.points;
-    points[key].visited = true;
+    points[this.state.activeKey].visited = true;
     this.setState({points});
     this.sendMessage();
     this.saveData();
@@ -93,83 +105,20 @@ var Goldenbridge = React.createClass({
             source={require('./web/test.html')}
             javaScriptEnabled={true}
         />
-        <GeolocationExample
+        <Geolocation
             points={this.state.points}
             onPositionUpdate={this.updatePosition}
-            onPointVisited={this.markPointVisited}
+        />
+        <AudioPlayer
+            sound={this.state.activePoint.audio}
+            autoplay={!this.state.activePoint.visited}
+            onCompletion={this.markPointVisited}
         />
       </View>
     );
   }
 });
 
-
-
-var GeolocationExample = React.createClass({
-  watchID: (null: ?number),
-
-  getInitialState: function() {
-    return {
-      //position: 'unknown',
-      position: {coords: {latitude:0, longitude:0}},
-      activePoint: {audio: null, visited: null},
-    };
-  },
-
-  getDistance: function(l1, l2) {
-    var p1 = {lat: l1[0], lon: l1[1]};
-    var p2 = {lat: l2[0], lon: l2[1]};
-    return geodist(p1, p2, {exact: true, unit: 'meters'});
-  },
-
-  getNearestPoint: function() {
-    var position = this.state.position.coords;
-    var coords = [position.latitude, position.longitude];
-    var points = this.props.points;
-    Object.keys(points).forEach(function(key) {
-      var location = points[key].coordinates;
-      if (this.getDistance(coords, location) < 10) {
-        this.setState({activeKey: key});
-        this.setState({activePoint: points[key]});
-        //alert('nearest point is ' + key + '\n' + JSON.stringify(this.state.activePoint));
-      }
-    }, this);
-  },
-
-  componentDidMount: function() {
-    MusicPlayer.playSound('music.mp3', -1);
-    this.watchID = navigator.geolocation.watchPosition(
-      (position) => {
-        this.props.onPositionUpdate(position);
-        this.setState({position});
-        this.getNearestPoint();
-      },
-      (error) => {
-        console.log('watchPosition error: ' + error.message);
-      },
-      {enableHighAccuracy: true, timeout: 60000, maximumAge: 1000, distanceFilter: 1}
-    );
-  },
-
-  componentWillUnmount: function() {
-    navigator.geolocation.clearWatch(this.watchID);
-    MusicPlayer.pause();
-  },
-
-  markVisited: function() {
-    this.props.onPointVisited(this.state.activeKey);
-  },
-
-  render: function() {
-    return (
-      <AudioPlayer
-          sound={this.state.activePoint.audio}
-          autoplay={!this.state.activePoint.visited}
-          onCompletion={this.markVisited}
-      />
-    );
-  }
-});
 
 
 const styles = StyleSheet.create({
