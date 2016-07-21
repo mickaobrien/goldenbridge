@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import Text from 'react-native';
 
 var Geolocation = React.createClass({
   watchID: (null: ?number),
