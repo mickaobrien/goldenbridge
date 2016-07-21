@@ -25,6 +25,10 @@ var AudioPlayer = React.createClass({
   },
 
   componentWillReceiveProps: function(props) {
+    if (!props.sound && this.timer) {
+        clearInterval(this.timer);
+        this.setState({progress: 0});
+    }
     if (!props.sound || props.sound == this.props.sound) return;
     //TODO stop playing audio if !props.sound && this.props.sound
     if (this.state.sound) this.state.sound.stop();
@@ -68,7 +72,6 @@ var AudioPlayer = React.createClass({
     if (this.state.sound) {
       this.state.sound.play((success) => {
         if (success) {
-          clearInterval(this.timer);
           this.props.onCompletion();
           //TODO mark visited when finished playing, kill setInterval
         } else {
