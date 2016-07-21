@@ -6,6 +6,7 @@
 import React, { Component } from 'react';
 import store from 'react-native-simple-store';
 import WebViewBridge from 'react-native-webview-bridge';
+import _ from 'lodash';
 import AudioPlayer from './components/player';
 import Geolocation from './components/geolocation';
 import MusicPlayer from './components/music-player';
@@ -26,13 +27,17 @@ var Goldenbridge = React.createClass({
     return {
       points: {},
       position: {coords: {latitude:0, longitude:0}},
-      activePoint: {audio: null, visited: null},
+      activePoint: null,
     };
   },
 
   componentDidMount() {
     this.loadData();
     MusicPlayer.playSound('music.mp3', -1);
+  },
+
+  componentWillUpdate() {
+    this.sendMessage();
   },
 
   loadPoints() {
@@ -49,7 +54,8 @@ var Goldenbridge = React.createClass({
   loadData() {
     store.get('points').then(
       (points) => {
-        if (points !== null) {
+        if (!_.isEmpty(points)) { //TODO it should be null or valid, check saving/loading
+          alert(JSON.stringify(points));
           this.setState({points});
         } else {
           this.setState({points: this.loadPoints()});
@@ -73,15 +79,18 @@ var Goldenbridge = React.createClass({
     //JSON.stringify(locations)
   },
 
+  activePoint() {
+    if (this.state.activeKey) {
+      return this.state.points[this.state.activeKey];
+    }
+    return {activePoint: {audio: null, visited: null}};
+  },
+
   updatePosition(position) {
     console.log('updating position');
     this.sendMessage({currentPosition: position.coords});
-    var activePoint = getNearestPoint(this.state.points, position);
-    if (activePoint) {
-      this.setState({activePoint: this.state.points[activePoint]});
-    } else {
-      this.setState({activePoint: {audio: null, visited: null}});
-    }
+    var activeKey = getNearestPoint(this.state.points, position);
+    this.setState({activeKey});
   },
 
   markPointVisited() {
@@ -89,8 +98,8 @@ var Goldenbridge = React.createClass({
     var points = this.state.points;
     points[this.state.activeKey].visited = true;
     this.setState({points});
-    this.sendMessage();
-    this.saveData();
+    //this.sendMessage();
+    //this.saveData();
   },
 
   render() {
@@ -109,8 +118,8 @@ var Goldenbridge = React.createClass({
             onPositionUpdate={this.updatePosition}
         />
         <AudioPlayer
-            sound={this.state.activePoint.audio}
-            autoplay={!this.state.activePoint.visited}
+            sound={this.activePoint().audio}
+            autoplay={!this.activePoint().visited}
             onCompletion={this.markPointVisited}
         />
       </View>
