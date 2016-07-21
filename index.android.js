@@ -9,6 +9,7 @@ import WebViewBridge from 'react-native-webview-bridge';
 import _ from 'lodash';
 import AudioPlayer from './components/player';
 import Geolocation from './components/geolocation';
+import IntroductionModal from './components/introduction';
 import MusicPlayer from './components/music-player';
 import getNearestPoint from './components/helpers'
 import {
@@ -105,17 +106,18 @@ var Goldenbridge = React.createClass({
   render() {
     return (
       <View style={styles.container}>
+        <Geolocation
+            onPositionUpdate={this.updatePosition}
+        />
         <Text style={styles.welcome}>
           Goldenbridge Project
         </Text>
+        <IntroductionModal />
         <WebViewBridge style={styles.web}
             ref="webviewbridge"
             onBridgeMessage={this.sendMessage}
             source={require('./web/test.html')}
             javaScriptEnabled={true}
-        />
-        <Geolocation
-            onPositionUpdate={this.updatePosition}
         />
         <AudioPlayer
             sound={this.activePoint().audio}
