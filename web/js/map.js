@@ -13,7 +13,8 @@
       map.zoomControl.removeFrom(map);
       map.setView([53.336981, -6.319574], 16);
 
-      var customLayer = L.tileLayer('https://api.mapbox.com/styles/v1/-mick-/ciqdnbv83000ie4mdhs0szmcs/tiles/256/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken, {
+      //var customLayer = L.tileLayer('https://api.mapbox.com/styles/v1/-mick-/ciqdnbv83000ie4mdhs0szmcs/tiles/256/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken, {
+      var customLayer = L.tileLayer('./tiles/256/{z}/{x}/{y}', {
         attribution: 'Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
       }).addTo(map);
 
