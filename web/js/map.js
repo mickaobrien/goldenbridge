@@ -51,6 +51,7 @@
         return locations[key].coordinates;
       });
       this.map.fitBounds(bounds);
+      this.map.setMaxBounds(bounds);
     },
 
     activeKey: null,
