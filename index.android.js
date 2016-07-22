@@ -89,9 +89,9 @@ var Goldenbridge = React.createClass({
 
   updatePosition(position) {
     console.log('updating position');
-    this.sendMessage({currentPosition: position.coords});
     var activeKey = getNearestPoint(this.state.points, position);
     this.setState({activeKey});
+    this.sendMessage({currentPosition: position.coords, activeKey: activeKey});
   },
 
   markPointVisited() {
@@ -99,7 +99,7 @@ var Goldenbridge = React.createClass({
     var points = this.state.points;
     points[this.state.activeKey].visited = true;
     this.setState({points});
-    //this.sendMessage();
+    this.sendMessage();
     //this.saveData();
   },
 
