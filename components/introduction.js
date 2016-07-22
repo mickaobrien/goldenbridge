@@ -29,9 +29,16 @@ var IntroductionModal = React.createClass({
       >
         <View style={styles.modal}>
           <Text style={styles.heading}>Introduction</Text>
-          <Text style={styles.text}>
-            This is an introduction to the app. Maybe some background on the project or a link to further information. Whatever you want.
-          </Text>
+          <View style={styles.textBlock}>
+            <Text style={styles.text}>
+              This is an introduction to the app. Maybe some background on the project or a link to further information. Whatever you want.
+            </Text>
+          </View>
+          <View style={styles.textBlock}>
+            <Text style={styles.text}>
+              Walk to the dots on the map to hear the audio.
+            </Text>
+          </View>
           <View style={styles.textBlock}>
             <Text style={styles.text}>
               Before you start make sure:
