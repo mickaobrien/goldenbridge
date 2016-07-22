@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     //overflow: 'hidden'
   },
   fill: {
-    backgroundColor: '#3b5998',
+    backgroundColor: '#6495ED',
     height: 20
   }
 });
