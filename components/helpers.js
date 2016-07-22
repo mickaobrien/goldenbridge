@@ -3,6 +3,8 @@
 import geodist from 'geodist';
 import _ from 'lodash';
 
+const MIN_ACCURACY = 20;
+
 function getDistance(l1, l2) {
   var p1 = {lat: l1[0], lon: l1[1]};
   var p2 = {lat: l2[0], lon: l2[1]};
@@ -11,6 +13,9 @@ function getDistance(l1, l2) {
 
 function getNearestPoint(points, currentLocation) {
   var position = currentLocation.coords;
+  if (position.accuracy > MIN_ACCURACY) {
+    return null;
+  }
   var coords = [position.latitude, position.longitude];
   //var points = this.props.points;
   _.forEach(points, function(point, key) {
