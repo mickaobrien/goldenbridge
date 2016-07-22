@@ -42,7 +42,8 @@ var Goldenbridge = React.createClass({
   },
 
   loadPoints() {
-    return require('./data/locations.json');
+    //return require('./data/locations.json');
+    return require('./data/cork.json');
   },
 
   saveData() {
@@ -56,7 +57,6 @@ var Goldenbridge = React.createClass({
     store.get('points').then(
       (points) => {
         if (!_.isEmpty(points)) { //TODO it should be null or valid, check saving/loading
-          alert(JSON.stringify(points));
           this.setState({points});
         } else {
           this.setState({points: this.loadPoints()});

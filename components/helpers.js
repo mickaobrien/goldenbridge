@@ -3,7 +3,7 @@
 import geodist from 'geodist';
 import _ from 'lodash';
 
-const MIN_ACCURACY = 20;
+const MIN_ACCURACY = 40;
 
 function getDistance(l1, l2) {
   var p1 = {lat: l1[0], lon: l1[1]};
