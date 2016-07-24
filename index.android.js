@@ -29,12 +29,13 @@ var Goldenbridge = React.createClass({
       points: {},
       position: {coords: {latitude:0, longitude:0}},
       activePoint: null,
+      ready: false,
     };
   },
 
   componentDidMount() {
     this.loadData();
-    MusicPlayer.playSound('music.mp3', -1);
+    MusicPlayer.playSound('music.ogg', -1);
   },
 
   componentWillUpdate() {
@@ -88,9 +89,14 @@ var Goldenbridge = React.createClass({
   },
 
   updatePosition(position) {
+    // Don't activate anything until the user is ready
+    if (!this.state.ready) {
+      return;
+    }
     console.log('updating position');
     var activeKey = getNearestPoint(this.state.points, position);
     this.setState({activeKey});
+    this.setState({position});
     this.sendMessage({currentPosition: position.coords, activeKey: activeKey});
   },
 
@@ -103,6 +109,10 @@ var Goldenbridge = React.createClass({
     //this.saveData();
   },
 
+  setReady() {
+    this.setState({ready: true});
+  },
+
   render() {
     return (
       <View style={styles.container}>
@@ -112,7 +122,10 @@ var Goldenbridge = React.createClass({
         <Text style={styles.welcome}>
           Goldenbridge Project
         </Text>
-        <IntroductionModal />
+        <IntroductionModal
+          onClose={this.setReady}
+          visible={!this.state.ready}
+        />
         <WebViewBridge style={styles.web}
             ref="webviewbridge"
             onBridgeMessage={this.sendMessage}

@@ -11,18 +11,14 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 var IntroductionModal = React.createClass({
-  getInitialState: function() {
-    return {visible: true};
-  },
-
   hideModal: function() {
-    this.setState({visible: false});
+    this.props.onClose();
   },
 
   render: function() {
     return (
       <Modal
-        visible={this.state.visible}
+        visible={this.props.visible}
         animationType={'fade'}
         transparent={true}
         onRequestClose={this.hideModal}
