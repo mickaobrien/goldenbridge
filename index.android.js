@@ -9,19 +9,51 @@ import WebViewBridge from 'react-native-webview-bridge';
 import _ from 'lodash';
 import AudioPlayer from './components/player';
 import Geolocation from './components/geolocation';
-import IntroductionModal from './components/introduction';
+import IntroductionScreen from './components/introduction';
+import IntroductionModal from './components/modal';
 import MusicPlayer from './components/music-player';
 import getNearestPoint from './components/helpers'
 import {
   AppRegistry,
+  Navigator,
   Platform,
   StyleSheet,
   Text,
   UIManager,
+  TouchableHighlight,
   View,
 } from 'react-native';
 
 if (Platform.OS === 'android') { UIManager.setLayoutAnimationEnabledExperimental(true); }
+
+var App = React.createClass({
+
+  getInitialState() {
+    return {
+      appScreen: 'app',
+      introScreen: 'introduction',
+    };
+  },
+
+  renderScene(route, navigator) {
+    if (route === 'app'){
+      return <Goldenbridge navigator={navigator} nextScreen={this.state.appScreen}/>;
+    } else {
+      return (
+        <IntroductionScreen navigator={navigator} nextScreen={this.state.appScreen}/>
+      );
+    }
+  },
+
+  render() {
+    return (
+      <Navigator
+        initialRoute={{title: 'Introduction'}}
+        renderScene={this.renderScene}
+      />
+    );
+  }
+});
 
 var Goldenbridge = React.createClass({
   getInitialState() {
@@ -91,6 +123,7 @@ var Goldenbridge = React.createClass({
   updatePosition(position) {
     // Don't activate anything until the user is ready
     if (!this.state.ready) {
+      this.sendMessage({currentPosition: position.coords, activeKey: null});
       return;
     }
     console.log('updating position');
@@ -117,7 +150,7 @@ var Goldenbridge = React.createClass({
     return (
       <View style={styles.container}>
         <Geolocation
-            onPositionUpdate={this.updatePosition}
+          onPositionUpdate={this.updatePosition}
         />
         <Text style={styles.welcome}>
           Goldenbridge Project
@@ -171,4 +204,4 @@ const styles = StyleSheet.create({
 });
 
 
-AppRegistry.registerComponent('Goldenbridge', () => Goldenbridge);
+AppRegistry.registerComponent('Goldenbridge', () => App);

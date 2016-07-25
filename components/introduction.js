@@ -2,109 +2,68 @@
 
 import React from 'react';
 import {
-  Modal,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableHighlight,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
-var IntroductionModal = React.createClass({
-  hideModal: function() {
-    this.props.onClose();
+var IntroductionScreen = React.createClass({
+  startApp() {
+    this.props.navigator.push(this.props.nextScreen);
   },
 
-  render: function() {
+  render() {
     return (
-      <Modal
-        visible={this.props.visible}
-        animationType={'fade'}
-        transparent={true}
-        onRequestClose={this.hideModal}
-      >
-        <View style={styles.modal}>
-          <Text style={styles.heading}>Introduction</Text>
-          <View style={styles.textBlock}>
-            <Text style={styles.text}>
-              This is an introduction to the app. Maybe some background on the project or a link to further information. Whatever you want.
-            </Text>
-          </View>
-          <View style={styles.textBlock}>
-            <Text style={styles.text}>
-              Walk to the dots on the map to hear the audio.
-            </Text>
-          </View>
-          <View style={styles.textBlock}>
-            <Text style={styles.text}>
-              Before you start make sure:
-            </Text>
-            <Text style={styles.bullet}>
-              <Icon name={'headphones'} style={styles.icon} /> your <Text style={styles.emphasis}>headphones</Text> are plugged in
-            </Text>
-            <Text style={styles.bullet}>
-              <Icon name={'map-marker'} style={styles.icon}/>   your <Text style={styles.emphasis}>GPS</Text> is enabled
-            </Text>
-          </View>
-          <TouchableHighlight style={styles.button}
-            onPress={this.hideModal}>
-            <Text style={styles.buttonText}>Let's Begin</Text>
-          </TouchableHighlight>
+      <ScrollView style={styles.container}>
+        <View style={styles.titlebar}>
+          <Text style={styles.title}>Echoes from the Past: Goldenbridge Industrial School</Text>
         </View>
-      </Modal>
+        <View style={styles.textcontent}>
+          <Text style={styles.paragraph}>
+            Echoes from the Past is a location triggered audio guide which uses the findings of the 2009 Report of the Commission to Inquire into Child Abuse (the Ryan Report) to explore the former site of St. Vincent’s Industrial School.
+          </Text>
+          <Text style={styles.paragraph}>
+              St. Vincent’s Industrial School, more commonly known as “Goldenbridge”, was an industrial school in Dublin run by the Sisters of Mercy. Originally founded as a rehabilitation service for female prisoners, the site was converted to an industrial school for girls in 1883. The number of residents fluctuated over the decades reaching a peak of 193 in 1964. The school closed in 1983 and the buildings have since been demolished. Experiences of ex-residents of Goldenbridge featured in a number of television and radio programmes such as ‘Dear Daughter’ and ‘States of Fear’ and some ex-residents were prominent in the campaign for redress. The screening of these programmes provoked a huge public reaction, and was followed by an apology by the Taoiseach and the establishment of the Commission to Inquire into Child Abuse in 2000.
+          </Text>
+          <Text style={styles.paragraph}>
+              This audio guide is designed to give the user a sense of the common experiences had by ex-residents of the industrial school using direct testimonial statements from the Ryan Report. The Report is publicly accessible at the following link: www.childabusecommission.ie
+          </Text>
+          <Text style={styles.paragraph}>
+            Echoes from the Past is part of a two-year project Industrial Memories analysing the findings of the 2009 Ryan Report funded by the Irish Research Council under New Horizon 2015 (for further information http://irishmemorystudies.com/index.php/industrial-memories/). For more information on Goldenbridge Industrial School and a downloadable version of the audio see please visit ......(WORDPRESS website which Maeve will create this week)
+          </Text>
+        </View>
+        <TouchableHighlight onPress={this.startApp}>
+          <Text>Hello!</Text>
+        </TouchableHighlight>
+      </ScrollView>
     );
   }
 });
 
 const styles = StyleSheet.create({
-  modal: {
+  container: {
     flex: 1,
-    backgroundColor: 'rgba(55, 55, 55, 0.95)',
-    alignItems: 'center',
-    margin: 30,
-    marginTop: 60,
-    marginBottom: 60,
   },
-  heading: {
-    color: '#EEEEEE',
-    fontSize: 20,
-    marginTop: 10,
-    marginBottom: 10,
+  titlebar: {
+    backgroundColor: 'gray',
   },
-  textBlock: {
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  text: {
-    color: '#EEEEEE',
-    fontSize: 16,
-    marginLeft: 10,
-    marginRight: 10,
+  title: {
     textAlign: 'center',
+    fontSize: 26,
+    color: 'white',
   },
-  bullet: {
-    color: '#EEEEEE',
+  textcontent: {
+    padding: 4,
+    paddingLeft: 8,
+    paddingRight: 8,
+  },
+  paragraph: {
     fontSize: 16,
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  button: {
-    backgroundColor: '#16B3C2',
-    marginTop: 20,
-  },
-  buttonText: {
-    color: '#FFFFFF',
-    margin: 10,
-  },
-  emphasis: {
-    textDecorationLine: 'underline',
-    color: '#FFFFFF',
-  },
-  icon: {
-    fontSize: 18,
-    margin: 2,
-    color: '#FFFFFF',
+    marginTop: 4,
+    marginBottom: 6,
   },
 });
 
-module.exports = IntroductionModal;
+module.exports = IntroductionScreen;
