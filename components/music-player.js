@@ -1,11 +1,28 @@
 'use strict';
 
+import ProgressBar from './progress-bar';
+import React from 'react';
 import Sound from 'react-native-sound';
 
-var MusicPlayer = {
-  playSound: function(filename, numberOfLoops){
-    if (this.sound) {
-      this.sound.play();
+var MusicPlayer = React.createClass({
+  getInitialState() {
+    return {sound: null};
+  },
+
+  componentDidMount() {
+    this.playSound(this.props.soundFile, -1);
+  },
+
+  componentWillUnmount() {
+    if (this.state.sound) {
+      this.state.sound.stop();
+      this.state.sound.release();
+    }
+  },
+
+  playSound(filename, numberOfLoops) {
+    if (this.state.sound) {
+      return;
     }
     var sound = new Sound(filename, Sound.MAIN_BUNDLE, (error) => {
       if (error) {
@@ -15,14 +32,22 @@ var MusicPlayer = {
         console.log('playing ' + filename + ' successfully');
         sound.setNumberOfLoops(numberOfLoops);
         sound.play()
-        this.sound = sound;
+        this.setState({sound});
       }
     });
   },
 
-  pauseSound: function(filename, loop) {
-    this.sound.pause();
-  }
-}
+  pause() {
+    if (this.state.sound) this.state.sound.pause();
+  },
+
+  play() {
+    if (this.state.sound) this.state.sound.play();
+  },
+
+  render() {
+    return false;
+  },
+});
 
 module.exports = MusicPlayer;

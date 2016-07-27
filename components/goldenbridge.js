@@ -7,10 +7,9 @@ import _ from 'lodash';
 import AudioPlayer from './player';
 import Geolocation from './geolocation';
 import IntroductionModal from './modal';
-import MusicPlayer from './music-player';
 import getNearestPoint from './helpers'
 import {
-  AppRegistry,
+  AppState,
   Navigator,
   Platform,
   StyleSheet,
@@ -34,7 +33,8 @@ var Goldenbridge = React.createClass({
 
   componentDidMount() {
     this.loadData();
-    MusicPlayer.playSound('music.ogg', -1);
+    //this.music = MusicPlayer;
+    //this.music.play('music.ogg', -1);
   },
 
   componentWillUpdate() {
