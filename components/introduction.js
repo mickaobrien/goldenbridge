@@ -1,5 +1,6 @@
 'use strict';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
 import {
   ScrollView,
@@ -18,7 +19,7 @@ var IntroductionScreen = React.createClass({
     return (
       <ScrollView style={styles.container}>
         <View style={styles.titlebar}>
-          <Text style={styles.title}>Echoes from the Past: Goldenbridge Industrial School</Text>
+          <Text style={styles.title}>Echoes From The Past</Text>
         </View>
         <View style={styles.textcontent}>
           <Text style={styles.paragraph}>
@@ -33,10 +34,13 @@ var IntroductionScreen = React.createClass({
           <Text style={styles.paragraph}>
             Echoes from the Past is part of a two-year project Industrial Memories analysing the findings of the 2009 Ryan Report funded by the Irish Research Council under New Horizon 2015 (for further information http://irishmemorystudies.com/index.php/industrial-memories/). For more information on Goldenbridge Industrial School and a downloadable version of the audio see please visit ......(WORDPRESS website which Maeve will create this week)
           </Text>
+          <TouchableHighlight style={styles.button}
+            onPress={this.startApp}>
+            <Text style={styles.buttonText}>
+              BEGIN  <Icon style={styles.buttonIcon} name={'chevron-right'} />
+            </Text>
+          </TouchableHighlight>
         </View>
-        <TouchableHighlight onPress={this.startApp}>
-          <Text>Hello!</Text>
-        </TouchableHighlight>
       </ScrollView>
     );
   }
@@ -45,14 +49,17 @@ var IntroductionScreen = React.createClass({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   titlebar: {
-    backgroundColor: 'gray',
+    alignSelf: 'stretch',
+    backgroundColor: '#0A1E3F',
+    padding: 4,
   },
   title: {
     textAlign: 'center',
-    fontSize: 26,
-    color: 'white',
+    fontSize: 24,
+    color: '#B9C7D4',
   },
   textcontent: {
     padding: 4,
@@ -60,9 +67,25 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   paragraph: {
-    fontSize: 16,
+    fontSize: 20,
     marginTop: 4,
     marginBottom: 6,
+  },
+  button: {
+    margin: 24,
+    marginLeft: 64,
+    marginRight: 64,
+    padding: 16,
+    backgroundColor: '#B9C7D4',
+    alignItems: 'center',
+    borderRadius: 4,
+  },
+  buttonText: {
+    color: '#0A1E3F',
+    fontSize: 20,
+  },
+  buttonIcon: {
+    fontSize: 16,
   },
 });
 
