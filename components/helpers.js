@@ -3,7 +3,7 @@
 import geodist from 'geodist';
 import _ from 'lodash';
 
-const MIN_ACCURACY = 40;
+const MIN_ACCURACY = 20;
 
 function getDistance(l1, l2) {
   var p1 = {lat: l1[0], lon: l1[1]};
@@ -23,7 +23,7 @@ function getNearestPoint(points, currentLocation) {
   });
   var sortedPoints = _.sortBy(_.values(points), function(point) { return point.distance; });
   var nearestPoint = sortedPoints[0];
-  if (nearestPoint.distance < 10) { //TODO && accuracy good
+  if (nearestPoint.distance < 10) {
     return nearestPoint.key;
   } else {
     return null;
