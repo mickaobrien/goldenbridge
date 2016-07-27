@@ -59,7 +59,6 @@ var App = React.createClass({
       <Navigator
         initialRoute={{name: 'home'}}
         renderScene={this.renderScene}
-        navigationBar={<MusicPlayer soundFile='music.ogg' appState={this.state.appState}/>}
       />
     );
   }
