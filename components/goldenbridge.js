@@ -1,5 +1,6 @@
 'use strict';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
 import React, { Component } from 'react';
 import store from 'react-native-simple-store';
 import WebViewBridge from 'react-native-webview-bridge';
@@ -7,7 +8,8 @@ import _ from 'lodash';
 import AudioPlayer from './player';
 import Geolocation from './geolocation';
 import IntroductionModal from './modal';
-import getNearestPoint from './helpers'
+import MusicPlayer from './music-player';
+import getNearestPoint from './helpers';
 import {
   AppState,
   Navigator,
@@ -15,7 +17,7 @@ import {
   StyleSheet,
   Text,
   UIManager,
-  TouchableHighlight,
+  TouchableOpacity,
   View,
 } from 'react-native';
 
@@ -113,15 +115,25 @@ var Goldenbridge = React.createClass({
     this.setState({ready: true});
   },
 
+  goBack() {
+    this.props.navigator.pop();
+  },
+
   render() {
     return (
       <View style={styles.container}>
+        <MusicPlayer soundFile='music.ogg' />
         <Geolocation
           onPositionUpdate={this.updatePosition}
         />
-        <Text style={styles.welcome}>
-          Goldenbridge Project
-        </Text>
+        <View style={styles.titlebar}>
+          <TouchableOpacity onPress={this.goBack}>
+            <Icon name={'chevron-left'} style={styles.backButton} />
+          </TouchableOpacity>
+          <Text style={styles.titleText}>
+            Goldenbridge Project
+          </Text>
+        </View>
         <IntroductionModal
           onClose={this.setReady}
           visible={!this.state.ready}
@@ -162,10 +174,21 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
+  titlebar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingLeft: 8,
+    paddingRight: 8,
+  },
+  titleText: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    flex: 1,
+  },
+  backButton: {
+    fontSize: 16,
   },
 });
 
