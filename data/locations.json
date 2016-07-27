@@ -2,76 +2,91 @@
     1: {
         "key": "1",
         "coordinates": [53.335703727844745, -6.317653656005859],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "The Ryan Report",
     },
     2: {
         "key": "2",
         "coordinates": [53.33628991496072, -6.317787766456604],
-        "audio": "tr2.mp3"
+        "audio": "tr2.mp3",
+        "title": "Irish Industrial Schools",
     },
     3: {
         "key": "3",
         "coordinates": [53.337157969606594, -6.317964792251586],
-        "audio": "tr2.mp3"
+        "audio": "tr2.mp3",
+        "title": "St. Vincent’s Industrial School/Goldenbridge",
     },
     4: {
         "key": "4",
         "coordinates": [53.337087500884664, -6.318884789943695],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "At The Gates",
     },
     5: {
         "key": "5",
         "coordinates": [53.33704105552701, -6.319767236709595],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "The Classroom",
     },
     6: {
         "key": "6",
         "coordinates": [53.33705386804451, -6.320660412311554],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "Scrubbing",
     },
     7: {
         "key": "7",
         "coordinates": [53.33677999964457, -6.320858895778656],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "The Landing",
     },
     8: {
         "key": "8",
         "coordinates": [53.33672394449211, -6.320300996303558],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "Inspections",
     },
     9: {
         "key": "9",
         "coordinates": [53.33796354694951, -6.3181284070014945],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "Rosary Bead Making",
     },
     10: {
         "key": "10",
         "coordinates": [53.338687432496066, -6.318273246288299],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "Bead Classes",
     },
     11: {
         "key": "11",
         "coordinates": [53.33842318366521, -6.319131553173065],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "'Scraps'",
     },
     12: {
         "key": "12",
         "coordinates": [53.33821178342168, -6.319834291934966],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "Water",
     },
     13: {
         "key": "13",
         "coordinates": [53.33795233623601, -6.320716738700866],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "Small Gestures of Kindness",
     },
     14: {
         "key": "14",
         "coordinates": [53.337800190547306, -6.321306824684143],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "Lessons of the Past",
     },
     15: {
         "key": "15",
         "coordinates": [53.33748148360846, -6.321805715560912],
-        "audio": "tr1.mp3"
+        "audio": "tr1.mp3",
+        "title": "We the Interviewers...",
     },
 }
