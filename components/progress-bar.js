@@ -44,14 +44,12 @@ var ProgressBar = React.createClass({
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#bbbbbb',
-    height: 20,
+    backgroundColor: '#B9C7D4',
     flex: 1,
-    //overflow: 'hidden'
   },
   fill: {
-    backgroundColor: '#6495ED',
-    height: 20
+    backgroundColor: '#0A1E3F',
+    flex: 1,
   }
 });
 

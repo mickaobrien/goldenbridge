@@ -115,7 +115,7 @@ var AudioPlayer = React.createClass({
 
 const styles = StyleSheet.create({
   player: {
-    height: 20,
+    height: 24,
     position: 'absolute',
     backgroundColor: '#F5FCFF',
     left: 0,
