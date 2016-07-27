@@ -1,6 +1,5 @@
 'use strict';
 
-import ProgressBar from './progress-bar';
 import React from 'react';
 import Sound from 'react-native-sound';
 
