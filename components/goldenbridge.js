@@ -27,6 +27,7 @@ var Goldenbridge = React.createClass({
   getInitialState() {
     return {
       points: {},
+      visited: [],
       position: {coords: {latitude:0, longitude:0}},
       activePoint: null,
       ready: false,
@@ -34,9 +35,8 @@ var Goldenbridge = React.createClass({
   },
 
   componentDidMount() {
-    this.loadData();
-    //this.music = MusicPlayer;
-    //this.music.play('music.ogg', -1);
+    this.loadVisited();
+    this.setState({points: this.loadPoints()});
   },
 
   componentWillUpdate() {
@@ -49,33 +49,29 @@ var Goldenbridge = React.createClass({
   },
 
   saveData() {
-    alert('save');
-    store.save('points', this.state.points).catch(error => {
+    store.save('visited', this.state.visited).catch(error => {
         alert('storage error:\n' + JSON.stringify(error));
     });
   },
 
-  loadData() {
-    store.get('points').then(
-      (points) => {
-        if (!_.isEmpty(points)) { //TODO it should be null or valid, check saving/loading
-          this.setState({points});
-        } else {
-          this.setState({points: this.loadPoints()});
-        }
+  loadVisited() {
+    store.get('visited').then(
+      (visited) => {
+        var visited = visited || [];
+        this.setState({visited});
       }
     );
   },
 
   clearData() {
-    store.delete('points');
+    store.delete('visited');
   },
 
   sendMessage(data) {
     //const { webviewbridge } = this.refs;
     console.log('sending message');
     if (typeof(data) != 'object') {
-      this.refs.webviewbridge.sendToBridge(JSON.stringify(this.state.points));
+      this.refs.webviewbridge.sendToBridge(JSON.stringify(this.points()));
     } else {
       this.refs.webviewbridge.sendToBridge(JSON.stringify(data));
     }
@@ -102,13 +98,22 @@ var Goldenbridge = React.createClass({
     this.sendMessage({currentPosition: position.coords, activeKey: activeKey});
   },
 
+  points() {
+    var points = this.state.points;
+    var visited = this.state.visited;
+    visited.forEach(function(k) {
+      points[k].visited = true;
+    });
+    return points;
+  },
+
   markPointVisited() {
     //TODO ugh, this is a mess...
-    var points = this.state.points;
-    points[this.state.activeKey].visited = true;
-    this.setState({points});
+    var visited = this.state.visited;
+    visited.push(this.state.activeKey);
+    this.setState({visited});
     this.sendMessage();
-    //this.saveData();
+    this.saveData();
   },
 
   setReady() {
