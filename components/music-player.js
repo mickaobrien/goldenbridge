@@ -13,16 +13,11 @@ var MusicPlayer = React.createClass({
   },
 
   componentWillUnmount() {
-    if (this.state.sound) {
-      this.state.sound.stop();
-      this.state.sound.release();
-    }
+    this.state.sound.stop();
+    this.state.sound.release();
   },
 
   playSound(filename, numberOfLoops) {
-    if (this.state.sound) {
-      return;
-    }
     var sound = new Sound(filename, Sound.MAIN_BUNDLE, (error) => {
       if (error) {
         console.log('failed to load the sound', error);
