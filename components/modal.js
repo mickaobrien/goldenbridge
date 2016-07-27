@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   button: {
-    backgroundColor: '#16B3C2',
     marginTop: 20,
+    backgroundColor: '#B9C7D4',
   },
   buttonText: {
-    color: '#FFFFFF',
+    color: '#0A1E3F',
     margin: 10,
   },
   emphasis: {
