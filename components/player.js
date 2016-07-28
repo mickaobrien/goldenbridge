@@ -115,7 +115,7 @@ var AudioPlayer = React.createClass({
 
 const styles = StyleSheet.create({
   player: {
-    height: 24,
+    height: 30,
     position: 'absolute',
     backgroundColor: '#F5FCFF',
     left: 0,
@@ -127,10 +127,10 @@ const styles = StyleSheet.create({
     height: 0.001,
   },
   playPause: {
-    width: 24,
+    width: 30,
   },
   playPauseIcon: {
-    fontSize: 16,
+    fontSize: 24,
     margin: 2,
     marginLeft: 6,
     alignItems: 'center',
