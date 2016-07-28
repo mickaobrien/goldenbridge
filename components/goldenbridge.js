@@ -44,8 +44,8 @@ var Goldenbridge = React.createClass({
   },
 
   loadPoints() {
-    //return require('../data/locations.json');
-    return require('../data/cork.json');
+    return require('../data/locations.json');
+    //return require('../data/cork.json');
   },
 
   saveData() {
@@ -68,14 +68,11 @@ var Goldenbridge = React.createClass({
   },
 
   sendMessage(data) {
-    //const { webviewbridge } = this.refs;
-    console.log('sending message');
     if (typeof(data) != 'object') {
       this.refs.webviewbridge.sendToBridge(JSON.stringify(this.points()));
     } else {
       this.refs.webviewbridge.sendToBridge(JSON.stringify(data));
     }
-    //JSON.stringify(locations)
   },
 
   activePoint() {
@@ -124,6 +121,13 @@ var Goldenbridge = React.createClass({
     this.props.navigator.pop();
   },
 
+  titleText() {
+    if (this.state.activeKey) {
+      return this.state.points[this.state.activeKey].title;
+    }
+    return 'Echoes From The Past';
+  },
+
   render() {
     return (
       <View style={styles.container}>
@@ -136,7 +140,7 @@ var Goldenbridge = React.createClass({
             <Icon name={'chevron-left'} style={styles.backButton} />
           </TouchableOpacity>
           <Text style={styles.titleText}>
-            Goldenbridge Project
+            {this.titleText()}
           </Text>
         </View>
         <IntroductionModal
