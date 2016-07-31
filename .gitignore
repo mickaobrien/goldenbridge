@@ -42,3 +42,4 @@ android/keystores/debug.keystore
 
 data_processing/
 backups/
+*.keystore
