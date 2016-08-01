@@ -4,6 +4,7 @@ import ProgressBar from './progress-bar';
 import React from 'react';
 import {
   LayoutAnimation,
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -22,6 +23,13 @@ var AudioPlayer = React.createClass({
       currentTime: 0,
       progress: 0,
     };
+  },
+
+  convertFilename(filename) {
+    if (Platform.OS === 'ios') {
+      return filename + '.mp3';
+    }
+    return filename + '.ogg';
   },
 
   componentWillReceiveProps: function(props) {
@@ -49,6 +57,7 @@ var AudioPlayer = React.createClass({
   },
 
   loadSound: function(filename, autoplay) {
+    filename = this.convertFilename(filename);
     var sound = new Sound(filename, Sound.MAIN_BUNDLE, (error) => {
       if (error) {
         console.log('failed to load the sound', error);

@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import {Platform} from 'react-native';
 import Sound from 'react-native-sound';
 
 var MusicPlayer = React.createClass({
@@ -17,10 +18,20 @@ var MusicPlayer = React.createClass({
     this.state.sound.release();
   },
 
+  convertFilename(filename) {
+    if (Platform.OS === 'ios') {
+      return filename + '.mp3';
+    }
+    return filename + '.ogg';
+  },
+
   playSound(filename, numberOfLoops) {
+    filename = this.convertFilename(filename);
+    alert(filename);
     var sound = new Sound(filename, Sound.MAIN_BUNDLE, (error) => {
       if (error) {
         console.log('failed to load the sound', error);
+        console.log('failed: ' + filename);
         this.sound = null;
       } else { // loaded successfully
         console.log('playing ' + filename + ' successfully');

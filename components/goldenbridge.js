@@ -139,7 +139,7 @@ var Goldenbridge = React.createClass({
     var webPath = (Platform.OS === 'android') ? {uri: 'file:///android_asset/web/test.html'} : require('../web/test.html');
     return (
       <View style={styles.container}>
-        <MusicPlayer soundFile='music.ogg' />
+        <MusicPlayer soundFile='music' />
         <Geolocation
           onPositionUpdate={this.updatePosition}
         />
