@@ -77,22 +77,35 @@ var Map = {
 }
 
 Map.init();
-WebViewBridge.send('ready');
 
-WebViewBridge.onMessage = function(message) {
-  var data = JSON.parse(message);
-  if (message.indexOf('currentPosition') > -1) {
-    var coordinates = [data.currentPosition.latitude, data.currentPosition.longitude];
-    Map.currentPosition.setLatLng(coordinates);
-    Map.activeKey = data.activeKey;
-  } else {
-    Map.locations = data;
-    Map.drawDots(data);
-  }
-
-  Map.updateActiveMarker();
-
+function whenAvailable(name, callback) {
+    var interval = 10; // ms
+    window.setTimeout(function() {
+        if (window[name]) {
+            callback(window[name]);
+        } else {
+            window.setTimeout(arguments.callee, interval);
+        }
+    }, interval);
 }
+
+whenAvailable('WebViewBridge', function() {
+            WebViewBridge.onMessage = function(message) {
+              var data = JSON.parse(message);
+              if (message.indexOf('currentPosition') > -1) {
+                var coordinates = [data.currentPosition.latitude, data.currentPosition.longitude];
+                Map.currentPosition.setLatLng(coordinates);
+                Map.activeKey = data.activeKey;
+              } else {
+                Map.locations = data;
+                Map.drawDots(data);
+              }
+
+              Map.updateActiveMarker();
+
+            }
+            WebViewBridge.send('ready');
+        });
 
   //if (typeof(WebViewBridge)==='undefined') {
     //var locations = { 1: { "key": "1", "coordinates": [53.335703727844745, -6.317653656005859], "audio": "tr1.mp3" }, 2: { "key": "2", "coordinates": [53.33628991496072, -6.317787766456604], "audio": "tr2.mp3" }, 3: { "key": "3", "coordinates": [53.337157969606594, -6.317964792251586], "audio": "tr2.mp3" }, 4: { "key": "4", "coordinates": [53.337087500884664, -6.318884789943695], "audio": "tr1.mp3" }, 5: { "key": "5", "coordinates": [53.33704105552701, -6.319767236709595], "audio": "tr1.mp3" }, 6: { "key": "6", "coordinates": [53.33705386804451, -6.320660412311554], "audio": "tr1.mp3" }, 7: { "key": "7", "coordinates": [53.33677999964457, -6.320858895778656], "audio": "tr1.mp3" }, 8: { "key": "8", "coordinates": [53.33672394449211, -6.320300996303558], "audio": "tr1.mp3" }, 9: { "key": "9", "coordinates": [53.33796354694951, -6.3181284070014945], "audio": "tr1.mp3" }, 10: { "key": "10", "coordinates": [53.338687432496066, -6.318273246288299], "audio": "tr1.mp3" }, 11: { "key": "11", "coordinates": [53.33842318366521, -6.319131553173065], "audio": "tr1.mp3" }, 12: { "key": "12", "coordinates": [53.33821178342168, -6.319834291934966], "audio": "tr1.mp3" }, 13: { "key": "13", "coordinates": [53.33795233623601, -6.320716738700866], "audio": "tr1.mp3" }, 14: { "key": "14", "coordinates": [53.337800190547306, -6.321306824684143], "audio": "tr1.mp3" }, 15: { "key": "15", "coordinates": [53.33748148360846, -6.321805715560912], "audio": "tr1.mp3" }, };
