@@ -206,7 +206,6 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   titleTextBar: {
-    //flexDirection: 'column',
   },
   titleText: {
     fontSize: 20,
