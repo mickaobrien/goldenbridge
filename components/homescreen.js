@@ -5,6 +5,7 @@ import React from 'react';
 import {
   Image,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -20,6 +21,7 @@ var HomeScreen = React.createClass({
     return (
       <Image style={styles.containerImage}
         source={require('../images/map.png')}>
+        <StatusBar hidden={true} />
         <View style={styles.titlebar}>
           <Text style={styles.title}>Echoes From The Past</Text>
           <Text style={styles.subtitle}>Goldenbridge Industrial School</Text>
