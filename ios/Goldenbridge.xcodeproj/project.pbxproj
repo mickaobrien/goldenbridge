@@ -24,6 +24,22 @@
 		783AC68B1D4B72850052E192 /* libReact-Native-Webview-Bridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 783AC68A1D4B72760052E192 /* libReact-Native-Webview-Bridge.a */; };
 		783AC6921D4B74200052E192 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 783AC6911D4B74170052E192 /* libRNSound.a */; };
 		783AC6941D4B77860052E192 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 783AC6931D4B77860052E192 /* FontAwesome.ttf */; };
+		7857FAD61D4FF3D900252B0E /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAC61D4FF3D900252B0E /* music.mp3 */; };
+		7857FAD71D4FF3D900252B0E /* tr1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAC71D4FF3D900252B0E /* tr1.mp3 */; };
+		7857FAD81D4FF3D900252B0E /* tr2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAC81D4FF3D900252B0E /* tr2.mp3 */; };
+		7857FAD91D4FF3D900252B0E /* tr3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAC91D4FF3D900252B0E /* tr3.mp3 */; };
+		7857FADA1D4FF3D900252B0E /* tr4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FACA1D4FF3D900252B0E /* tr4.mp3 */; };
+		7857FADB1D4FF3D900252B0E /* tr5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FACB1D4FF3D900252B0E /* tr5.mp3 */; };
+		7857FADC1D4FF3D900252B0E /* tr6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FACC1D4FF3D900252B0E /* tr6.mp3 */; };
+		7857FADD1D4FF3D900252B0E /* tr7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FACD1D4FF3D900252B0E /* tr7.mp3 */; };
+		7857FADE1D4FF3D900252B0E /* tr8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FACE1D4FF3D900252B0E /* tr8.mp3 */; };
+		7857FADF1D4FF3D900252B0E /* tr9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FACF1D4FF3D900252B0E /* tr9.mp3 */; };
+		7857FAE01D4FF3D900252B0E /* tr10.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAD01D4FF3D900252B0E /* tr10.mp3 */; };
+		7857FAE11D4FF3D900252B0E /* tr11.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAD11D4FF3D900252B0E /* tr11.mp3 */; };
+		7857FAE21D4FF3D900252B0E /* tr12.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAD21D4FF3D900252B0E /* tr12.mp3 */; };
+		7857FAE31D4FF3D900252B0E /* tr13.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAD31D4FF3D900252B0E /* tr13.mp3 */; };
+		7857FAE41D4FF3D900252B0E /* tr14.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAD41D4FF3D900252B0E /* tr14.mp3 */; };
+		7857FAE51D4FF3D900252B0E /* tr15.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAD51D4FF3D900252B0E /* tr15.mp3 */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +160,22 @@
 		783AC6851D4B72760052E192 /* React-Native-Webview-Bridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "React-Native-Webview-Bridge.xcodeproj"; path = "../node_modules/react-native-webview-bridge/ios/React-Native-Webview-Bridge.xcodeproj"; sourceTree = "<group>"; };
 		783AC68C1D4B74170052E192 /* RNSound.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		783AC6931D4B77860052E192 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		7857FAC61D4FF3D900252B0E /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
+		7857FAC71D4FF3D900252B0E /* tr1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr1.mp3; sourceTree = "<group>"; };
+		7857FAC81D4FF3D900252B0E /* tr2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr2.mp3; sourceTree = "<group>"; };
+		7857FAC91D4FF3D900252B0E /* tr3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr3.mp3; sourceTree = "<group>"; };
+		7857FACA1D4FF3D900252B0E /* tr4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr4.mp3; sourceTree = "<group>"; };
+		7857FACB1D4FF3D900252B0E /* tr5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr5.mp3; sourceTree = "<group>"; };
+		7857FACC1D4FF3D900252B0E /* tr6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr6.mp3; sourceTree = "<group>"; };
+		7857FACD1D4FF3D900252B0E /* tr7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr7.mp3; sourceTree = "<group>"; };
+		7857FACE1D4FF3D900252B0E /* tr8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr8.mp3; sourceTree = "<group>"; };
+		7857FACF1D4FF3D900252B0E /* tr9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr9.mp3; sourceTree = "<group>"; };
+		7857FAD01D4FF3D900252B0E /* tr10.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr10.mp3; sourceTree = "<group>"; };
+		7857FAD11D4FF3D900252B0E /* tr11.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr11.mp3; sourceTree = "<group>"; };
+		7857FAD21D4FF3D900252B0E /* tr12.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr12.mp3; sourceTree = "<group>"; };
+		7857FAD31D4FF3D900252B0E /* tr13.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr13.mp3; sourceTree = "<group>"; };
+		7857FAD41D4FF3D900252B0E /* tr14.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr14.mp3; sourceTree = "<group>"; };
+		7857FAD51D4FF3D900252B0E /* tr15.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr15.mp3; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -254,6 +286,22 @@
 		13B07FAE1A68108700A75B9A /* Goldenbridge */ = {
 			isa = PBXGroup;
 			children = (
+				7857FAC61D4FF3D900252B0E /* music.mp3 */,
+				7857FAC71D4FF3D900252B0E /* tr1.mp3 */,
+				7857FAC81D4FF3D900252B0E /* tr2.mp3 */,
+				7857FAC91D4FF3D900252B0E /* tr3.mp3 */,
+				7857FACA1D4FF3D900252B0E /* tr4.mp3 */,
+				7857FACB1D4FF3D900252B0E /* tr5.mp3 */,
+				7857FACC1D4FF3D900252B0E /* tr6.mp3 */,
+				7857FACD1D4FF3D900252B0E /* tr7.mp3 */,
+				7857FACE1D4FF3D900252B0E /* tr8.mp3 */,
+				7857FACF1D4FF3D900252B0E /* tr9.mp3 */,
+				7857FAD01D4FF3D900252B0E /* tr10.mp3 */,
+				7857FAD11D4FF3D900252B0E /* tr11.mp3 */,
+				7857FAD21D4FF3D900252B0E /* tr12.mp3 */,
+				7857FAD31D4FF3D900252B0E /* tr13.mp3 */,
+				7857FAD41D4FF3D900252B0E /* tr14.mp3 */,
+				7857FAD51D4FF3D900252B0E /* tr15.mp3 */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -571,9 +619,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7857FADB1D4FF3D900252B0E /* tr5.mp3 in Resources */,
+				7857FAD91D4FF3D900252B0E /* tr3.mp3 in Resources */,
+				7857FAD71D4FF3D900252B0E /* tr1.mp3 in Resources */,
+				7857FADE1D4FF3D900252B0E /* tr8.mp3 in Resources */,
+				7857FAD61D4FF3D900252B0E /* music.mp3 in Resources */,
 				783AC6941D4B77860052E192 /* FontAwesome.ttf in Resources */,
+				7857FADC1D4FF3D900252B0E /* tr6.mp3 in Resources */,
+				7857FAE01D4FF3D900252B0E /* tr10.mp3 in Resources */,
+				7857FAD81D4FF3D900252B0E /* tr2.mp3 in Resources */,
+				7857FADF1D4FF3D900252B0E /* tr9.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				7857FAE41D4FF3D900252B0E /* tr14.mp3 in Resources */,
+				7857FAE11D4FF3D900252B0E /* tr11.mp3 in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				7857FADA1D4FF3D900252B0E /* tr4.mp3 in Resources */,
+				7857FADD1D4FF3D900252B0E /* tr7.mp3 in Resources */,
+				7857FAE31D4FF3D900252B0E /* tr13.mp3 in Resources */,
+				7857FAE51D4FF3D900252B0E /* tr15.mp3 in Resources */,
+				7857FAE21D4FF3D900252B0E /* tr12.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
