@@ -128,6 +128,13 @@ var Goldenbridge = React.createClass({
     return 'Echoes From The Past';
   },
 
+  subtitleText() {
+    if (this.state.activeKey) {
+      return this.state.points[this.state.activeKey].citation;
+    }
+    return 'Goldenbridge Industrial School';
+  },
+
   render() {
     return (
       <View style={styles.container}>
@@ -139,9 +146,17 @@ var Goldenbridge = React.createClass({
           <TouchableOpacity onPress={this.goBack}>
             <Icon name={'chevron-left'} style={styles.backButton} />
           </TouchableOpacity>
-          <Text style={styles.titleText}>
-            {this.titleText()}
-          </Text>
+          <View style={styles.titleTextBar}>
+            <Text style={styles.titleText}>
+              {this.titleText()}
+            </Text>
+            <Text style={styles.citation}>
+              {this.subtitleText()}
+            </Text>
+          </View>
+          <TouchableOpacity>
+            <Icon name={'chevron-left'} style={[styles.backButton, {height: 0.001}]} />
+          </TouchableOpacity>
         </View>
         <IntroductionModal
           onClose={this.setReady}
@@ -186,15 +201,25 @@ const styles = StyleSheet.create({
   titlebar: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     paddingLeft: 8,
     paddingRight: 8,
+  },
+  titleTextBar: {
+    //flexDirection: 'column',
   },
   titleText: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
-    flex: 1,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  citation: {
+    fontSize: 16,
+    textAlign: 'center',
+    margin: 4,
+    fontStyle: 'italic',
   },
   backButton: {
     fontSize: 16,
