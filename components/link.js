@@ -24,6 +24,7 @@ var Link = React.createClass({
 const styles = StyleSheet.create({
   link: {
     color: '#0A1E3F',
+    textDecorationLine: 'underline',
   },
 });
 
