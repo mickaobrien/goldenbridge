@@ -27,7 +27,6 @@ var MusicPlayer = React.createClass({
 
   playSound(filename, numberOfLoops) {
     filename = this.convertFilename(filename);
-    alert(filename);
     var sound = new Sound(filename, Sound.MAIN_BUNDLE, (error) => {
       if (error) {
         console.log('failed to load the sound', error);

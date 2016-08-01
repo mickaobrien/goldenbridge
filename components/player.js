@@ -85,7 +85,7 @@ var AudioPlayer = React.createClass({
           this.props.onCompletion();
           //TODO mark visited when finished playing, kill setInterval
         } else {
-          alert('playback failed');
+          console.log('playback failed');
         }
       });
     }
