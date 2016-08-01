@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
 import {
   Image,
+  Platform,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -21,7 +22,7 @@ var HomeScreen = React.createClass({
     return (
       <Image style={styles.containerImage}
         source={require('../images/map.png')}>
-        <StatusBar hidden={true} />
+        <StatusBar hidden={Platform.OS === 'ios'} />
         <View style={styles.titlebar}>
           <Text style={styles.title}>Echoes From The Past</Text>
           <Text style={styles.subtitle}>Goldenbridge Industrial School</Text>
