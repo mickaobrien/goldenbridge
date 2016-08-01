@@ -135,14 +135,8 @@ var Goldenbridge = React.createClass({
     return 'Goldenbridge Industrial School';
   },
 
-  getAsset(path) {
-    if (Platform.OS === 'android') {
-      return {uri: 'file:///android_asset/' + path}
-    }
-    return require('../' + path);
-  },
-
   render() {
+    var webPath = (Platform.OS === 'android') ? {uri: 'file:///android_asset/web/test.html'} : require('../web/test.html');
     return (
       <View style={styles.container}>
         <MusicPlayer soundFile='music.ogg' />
@@ -172,7 +166,7 @@ var Goldenbridge = React.createClass({
         <WebViewBridge style={styles.web}
             ref="webviewbridge"
             onBridgeMessage={this.sendMessage}
-            source={this.getAsset('web/test.html')}
+            source={webPath}
             javaScriptEnabled={true}
         />
         <AudioPlayer
