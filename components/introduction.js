@@ -9,6 +9,7 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
+import {Link} from './link';
 
 var IntroductionScreen = React.createClass({
   startApp() {
@@ -32,7 +33,12 @@ var IntroductionScreen = React.createClass({
               This audio guide is designed to give the user a sense of the common experiences had by ex-residents of the industrial school using direct testimonial statements from the Ryan Report. The Report is publicly accessible at the following link: www.childabusecommission.ie
           </Text>
           <Text style={styles.paragraph}>
-            Echoes from the Past is part of a two-year project Industrial Memories analysing the findings of the 2009 Ryan Report funded by the Irish Research Council under New Horizon 2015 (for further information http://irishmemorystudies.com/index.php/industrial-memories/). For more information on Goldenbridge Industrial School and a downloadable version of the audio see please visit ......(WORDPRESS website which Maeve will create this week)
+            Echoes from the Past is part of a two-year project Industrial Memories analysing the
+            findings of the 2009 Ryan Report funded by the Irish Research Council under New Horizon 2015
+            (for further information see the <Link style={styles.paragraph} url='http://irishmemorystudies.com/index.php/industrial-memories/' text='Industrial Memories website' />).
+          </Text>
+          <Text style={styles.paragraph}>
+            For more information on Goldenbridge Industrial School and a downloadable version of the audio see please visit ......(WORDPRESS website which Maeve will create this week)
           </Text>
           <TouchableHighlight style={styles.button}
             onPress={this.startApp}>
