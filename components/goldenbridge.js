@@ -50,7 +50,7 @@ var Goldenbridge = React.createClass({
 
   saveData() {
     store.save('visited', this.state.visited).catch(error => {
-        alert('storage error:\n' + JSON.stringify(error));
+        console.log('storage error:\n' + JSON.stringify(error));
     });
   },
 
@@ -135,6 +135,13 @@ var Goldenbridge = React.createClass({
     return 'Goldenbridge Industrial School';
   },
 
+  getAsset(path) {
+    if (Platform.OS === 'android') {
+      return {uri: 'file:///android_asset/' + path}
+    }
+    return require('../' + path);
+  },
+
   render() {
     return (
       <View style={styles.container}>
@@ -165,7 +172,7 @@ var Goldenbridge = React.createClass({
         <WebViewBridge style={styles.web}
             ref="webviewbridge"
             onBridgeMessage={this.sendMessage}
-            source={require('../web/test.html')}
+            source={this.getAsset('web/test.html')}
             javaScriptEnabled={true}
         />
         <AudioPlayer
