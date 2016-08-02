@@ -44,7 +44,8 @@ var Goldenbridge = React.createClass({
   },
 
   loadPoints() {
-    return require('../data/locations.json');
+    //return require('../data/locations.json');
+    return require('../data/bristol.json');
     //return require('../data/cork.json');
   },
 
