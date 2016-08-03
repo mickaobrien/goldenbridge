@@ -40,6 +40,7 @@
 		7857FAE31D4FF3D900252B0E /* tr13.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAD31D4FF3D900252B0E /* tr13.mp3 */; };
 		7857FAE41D4FF3D900252B0E /* tr14.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAD41D4FF3D900252B0E /* tr14.mp3 */; };
 		7857FAE51D4FF3D900252B0E /* tr15.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAD51D4FF3D900252B0E /* tr15.mp3 */; };
+		78B64FE11D501099005D3E7E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B64FE01D501099005D3E7E /* Default-568h@2x.png */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -176,6 +177,7 @@
 		7857FAD31D4FF3D900252B0E /* tr13.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr13.mp3; sourceTree = "<group>"; };
 		7857FAD41D4FF3D900252B0E /* tr14.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr14.mp3; sourceTree = "<group>"; };
 		7857FAD51D4FF3D900252B0E /* tr15.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr15.mp3; sourceTree = "<group>"; };
+		78B64FE01D501099005D3E7E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -286,6 +288,7 @@
 		13B07FAE1A68108700A75B9A /* Goldenbridge */ = {
 			isa = PBXGroup;
 			children = (
+				78B64FE01D501099005D3E7E /* Default-568h@2x.png */,
 				7857FAC61D4FF3D900252B0E /* music.mp3 */,
 				7857FAC71D4FF3D900252B0E /* tr1.mp3 */,
 				7857FAC81D4FF3D900252B0E /* tr2.mp3 */,
@@ -632,6 +635,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				7857FAE41D4FF3D900252B0E /* tr14.mp3 in Resources */,
 				7857FAE11D4FF3D900252B0E /* tr11.mp3 in Resources */,
+				78B64FE11D501099005D3E7E /* Default-568h@2x.png in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				7857FADA1D4FF3D900252B0E /* tr4.mp3 in Resources */,
 				7857FADD1D4FF3D900252B0E /* tr7.mp3 in Resources */,
@@ -736,6 +740,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 8;
 				DEAD_CODE_STRIPPING = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -748,8 +753,10 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.goldenbridge.echoes;
 				PRODUCT_NAME = Goldenbridge;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bf925a1c-6c93-4535-9c03-5629924e1293";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -759,6 +766,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 8;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -770,8 +778,10 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.goldenbridge.echoes;
 				PRODUCT_NAME = Goldenbridge;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bf925a1c-6c93-4535-9c03-5629924e1293";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};

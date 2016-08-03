@@ -2,16 +2,22 @@
     1: {
         "key": "1",
         "coordinates": [51.891813, -8.43866213],
-        "audio": "tr1"
+        "audio": "tr1",
+        "title": "The Ryan Report",
+        "citation": "Chapter 1, 1.01-1.05",
     },
     2: {
         "key": "2",
         "coordinates": [51.892079, -8.438213],
-        "audio": "tr2"
+        "audio": "tr2",
+        "title": "Irish Industrial Schools",
+        "citation": "Chapter 2, 2.12-2.16; Chapter 3, 3.01",
     },
     3: {
         "key": "3",
         "coordinates": [51.8907254,-8.4331336],
-        "audio": "tr2"
+        "audio": "tr3",
+        "title": "St. Vincent`s Industrial School",
+        "citation": "Chapter 7, 7.01-7.13",
     },
 }
