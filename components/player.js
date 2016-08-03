@@ -36,7 +36,9 @@ var AudioPlayer = React.createClass({
     if (!props.sound && this.timer) {
         clearInterval(this.timer);
         this.setState({progress: 0});
-        this.state.sound.release();
+        if (this.state.sound) {
+          this.state.sound.release();
+        }
     }
     if (!props.sound || props.sound == this.props.sound) return;
     //TODO stop playing audio if !props.sound && this.props.sound
