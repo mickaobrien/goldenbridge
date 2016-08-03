@@ -1,21 +1,41 @@
 'use strict';
 
 import React from 'react';
+import TimerMixin from 'react-timer-mixin';
 
 var Geolocation = React.createClass({
+  mixins: [TimerMixin],
+
   watchID: (null: ?number),
 
-  componentDidMount: function() {
-    this.watchID = navigator.geolocation.watchPosition(
+  getInitialState: function() {
+    return {position: 'unknown'};
+  },
+
+  getPosition: function() {
+    navigator.geolocation.getCurrentPosition(
       (position) => {
         this.props.onPositionUpdate(position);
         this.setState({position});
       },
       (error) => {
-        console.log('watchPosition error: ' + error.message);
+        console.log('getCurrentPosition error: ' + error.message);
       },
-      {enableHighAccuracy: true, timeout: 60000, maximumAge: 1000, distanceFilter: 1}
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 2}
     );
+  },
+
+  componentDidMount: function() {
+    this.setInterval(this.getPosition, 500);
+    //this.watchID = navigator.geolocation.watchPosition((position) => {
+        //this.props.onPositionUpdate(position);
+        //this.setState({position});
+      //},
+      //(error) => {
+        //console.log('watchPosition error: ' + error.message);
+      //},
+      //{enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 2}
+    //);
   },
 
   componentWillUnmount: function() {
