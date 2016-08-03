@@ -4,6 +4,7 @@ import geodist from 'geodist';
 import _ from 'lodash';
 
 const MIN_ACCURACY = 20;
+const ACTIVE_RADIUS = 15;
 
 function getDistance(l1, l2) {
   var p1 = {lat: l1[0], lon: l1[1]};
@@ -23,7 +24,7 @@ function getNearestPoint(points, currentLocation) {
   });
   var sortedPoints = _.sortBy(_.values(points), function(point) { return point.distance; });
   var nearestPoint = sortedPoints[0];
-  if (nearestPoint.distance < 10) {
+  if (nearestPoint.distance < ACTIVE_RADIUS) {
     return nearestPoint.key;
   } else {
     return null;
