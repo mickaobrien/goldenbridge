@@ -2,16 +2,16 @@
     1: {
         "key": "1",
         "coordinates": [51.891813, -8.43866213],
-        "audio": "tr1.ogg"
+        "audio": "tr1"
     },
     2: {
         "key": "2",
         "coordinates": [51.892079, -8.438213],
-        "audio": "tr2.ogg"
+        "audio": "tr2"
     },
     3: {
         "key": "3",
         "coordinates": [51.8907254,-8.4331336],
-        "audio": "tr2.ogg"
+        "audio": "tr2"
     },
 }
