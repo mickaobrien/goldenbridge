@@ -32,12 +32,12 @@
    */
 
 //   jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
-  #ifdef DEBUG
-//    jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
-    jsCodeLocation = [NSURL URLWithString:@"http://192.168.0.20:8081/index.ios.bundle?platform=ios&dev=true"];
-  #else
-    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-  #endif
+//  #ifdef DEBUG
+////    jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
+//    jsCodeLocation = [NSURL URLWithString:@"http://192.168.0.20:8081/index.ios.bundle?platform=ios&dev=true"];
+//  #else
+//    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+//  #endif
 
   /**
    * OPTION 2
@@ -47,7 +47,7 @@
    * simulator in the "Release" build configuration.
    */
 
-//  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"Goldenbridge"
