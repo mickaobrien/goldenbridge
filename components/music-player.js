@@ -36,6 +36,7 @@ var MusicPlayer = React.createClass({
         console.log('playing ' + filename + ' successfully');
         sound.setNumberOfLoops(numberOfLoops);
         sound.play()
+        sound.setCategory('Playback');
         this.setState({sound});
       }
     });

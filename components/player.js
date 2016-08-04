@@ -66,6 +66,7 @@ var AudioPlayer = React.createClass({
       } else { // loaded successfully
         console.log('duration in seconds: ' + sound.getDuration() +
                     'number of channels: ' + sound.getNumberOfChannels());
+        sound.setCategory('Playback');
         this.setState({'sound': sound});
         if (autoplay) {
           this.playSound();
