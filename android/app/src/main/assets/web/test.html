@@ -52,12 +52,31 @@
           var bounds = L.latLngBounds(southWest, northEast);
           map.setMaxBounds(bounds);
 
+          this.luasIcon().addTo(map);
+
           var localTileLayer = L.tileLayer('./tiles/256/{z}/{x}/{y}', {
             attribution: 'Data by OpenStreetMap, under CC BY SA.'
           }).addTo(map);
-          //var onlineTileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/-mick-/ciqdnbv83000ie4mdhs0szmcs/tiles/256/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken).addTo(map);
+          var onlineTileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/-mick-/ciqdnbv83000ie4mdhs0szmcs/tiles/256/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken).addTo(map);
 
           this.map = map;
+        },
+
+        drawCustomTileLayer: function() {
+          this.removeCustomTileLayer();
+          this.customTileLayer = L.tileLayer('./tiles/old_map/{z}/{x}/{y}.png').addTo(this.map);
+        },
+
+        removeCustomTileLayer: function() {
+          if (this.customTileLayer) {
+            this.map.removeLayer(this.customTileLayer);
+          }
+        },
+
+        luasIcon: function() {
+          var icon = L.icon({iconUrl: 'tram.png', iconSize: [24, 24]});
+          var stopLocation = [53.335336, -6.318272];
+          return L.marker(stopLocation, {icon: icon});
         },
 
         drawCircle: function(location, options) {
@@ -102,10 +121,12 @@
           if (this.activePoint) {
             this.map.removeLayer(this.activePoint);
           }
+          this.removeCustomTileLayer();
           if (this.activeKey) {
             var activePoint = this.locations[this.activeKey];
             var coordinates = activePoint.coordinates;
             this.activePoint = this.drawCircle({coordinates: coordinates}, {color: '#aaaaaa', radius: 15});
+            this.drawCustomTileLayer();
           }
         },
 
