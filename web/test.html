@@ -46,10 +46,16 @@
           map.zoomControl.removeFrom(map);
           map.setView([53.336981, -6.319574], 16);
 
+          // Restrict panning
+          var southWest = L.latLng(53.334813, -6.32172);
+          var northEast = L.latLng(53.340053, -6.316946);
+          var bounds = L.latLngBounds(southWest, northEast);
+          map.setMaxBounds(bounds);
+
           var localTileLayer = L.tileLayer('./tiles/256/{z}/{x}/{y}', {
             attribution: 'Data by OpenStreetMap, under CC BY SA.'
           }).addTo(map);
-          var onlineTileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/-mick-/ciqdnbv83000ie4mdhs0szmcs/tiles/256/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken).addTo(map);
+          //var onlineTileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/-mick-/ciqdnbv83000ie4mdhs0szmcs/tiles/256/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken).addTo(map);
 
           this.map = map;
         },
@@ -80,11 +86,6 @@
             points.push(Map.drawCircle(locations[key], markerStyle));
           });
           this.points = points;
-          var bounds = Object.keys(locations).map(function(key) {
-            return locations[key].coordinates;
-          });
-          this.map.fitBounds(bounds);
-          this.map.setMaxBounds(bounds);
         },
 
         activeKey: null,
