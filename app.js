@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import Goldenbridge from './components/goldenbridge';
 import HomeScreen from './components/homescreen';
 import IntroductionScreen from './components/introduction';
-import MusicPlayer from './components/music-player';
 import {
   AppRegistry,
   AppState,

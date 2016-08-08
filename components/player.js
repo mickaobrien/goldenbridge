@@ -25,6 +25,17 @@ var AudioPlayer = React.createClass({
     };
   },
 
+  componentDidMount() {
+    this.playBackgroundAudio(this.props.background);
+  },
+
+  componentWillUnmount() {
+    this.state.sound.stop();
+    this.state.sound.release();
+    this.state.background.stop();
+    this.state.background.release();
+  },
+
   convertFilename(filename) {
     if (Platform.OS === 'ios') {
       return filename + '.mp3';
@@ -40,14 +51,21 @@ var AudioPlayer = React.createClass({
           this.state.sound.release();
         }
     }
+
     if (!props.sound || props.sound == this.props.sound) return;
     //TODO stop playing audio if !props.sound && this.props.sound
     if (this.state.sound) this.state.sound.stop();
-    this.loadSound(props.sound, props.autoplay);
+    this.playSpeech(props.sound, props.autoplay);
     //TODO make this a separate method and stop when audio stops
     this.timer = this.setInterval(function() {
       if (this.state.sound) {
         this.state.sound.getCurrentTime((time, isPlaying) => {
+
+          // Set background volume lower if playing
+          if (this.state.background) {
+            this.state.background.setVolume(1 - 0.4*isPlaying);
+          }
+
           this.setState({
             'currentTime': time,
             'playing': isPlaying,
@@ -58,7 +76,16 @@ var AudioPlayer = React.createClass({
     }, 100);
   },
 
-  loadSound: function(filename, autoplay) {
+  playBackgroundAudio: function(filename) {
+    this.loadSound(filename, true, -1, 'background');
+  },
+
+  playSpeech: function(filename, autoplay) {
+    this.loadSound(filename, autoplay, 0, 'sound');
+  },
+
+  loadSound: function(filename, autoplay, numberOfLoops, stateName) {
+    numberOfLoops = numberOfLoops || 0;
     filename = this.convertFilename(filename);
     var sound = new Sound(filename, Sound.MAIN_BUNDLE, (error) => {
       if (error) {
@@ -67,9 +94,10 @@ var AudioPlayer = React.createClass({
         console.log('duration in seconds: ' + sound.getDuration() +
                     'number of channels: ' + sound.getNumberOfChannels());
         if (Platform.OS === 'ios') { sound.setCategory('Playback'); }
-        this.setState({'sound': sound});
+        sound.setNumberOfLoops(numberOfLoops);
+        this.setState({[stateName]: sound});
         if (autoplay) {
-          this.playSound();
+          this.playSound(sound, numberOfLoops);
         }
       }
     });
@@ -81,12 +109,12 @@ var AudioPlayer = React.createClass({
     }
   },
 
-  playSound: function() {
-    if (this.state.sound) {
-      this.state.sound.play((success) => {
-        if (success) {
+  //TODO this method is pretty messy now with the arguments
+  playSound: function(sound, numberOfLoops) {
+    if (sound) {
+      sound.play((success) => {
+        if (success && numberOfLoops === 0) {
           this.props.onCompletion();
-          //TODO mark visited when finished playing, kill setInterval
         } else {
           console.log('playback failed');
         }
@@ -96,7 +124,7 @@ var AudioPlayer = React.createClass({
 
   playPause: function() {
     if (this.state.sound) {
-      this.state.playing ? this.pauseSound() : this.playSound();
+      this.state.playing ? this.pauseSound() : this.playSound(this.state.sound, 0);
     }
   },
 

@@ -8,7 +8,6 @@ import _ from 'lodash';
 import AudioPlayer from './player';
 import Geolocation from './geolocation';
 import IntroductionModal from './modal';
-import MusicPlayer from './music-player';
 import getNearestPoint from './helpers';
 import {
   AppState,
@@ -44,8 +43,8 @@ var Goldenbridge = React.createClass({
   },
 
   loadPoints() {
-    //return require('../data/locations.json');
-    return require('../data/bristol.json');
+    return require('../data/locations.json');
+    //return require('../data/bristol.json');
     //return require('../data/cork.json');
   },
 
@@ -140,7 +139,6 @@ var Goldenbridge = React.createClass({
     var webPath = (Platform.OS === 'android') ? {uri: 'file:///android_asset/web/test.html'} : require('../web/test.html');
     return (
       <View style={styles.container}>
-        <MusicPlayer soundFile='music' />
         <Geolocation
           onPositionUpdate={this.updatePosition}
         />
@@ -165,15 +163,16 @@ var Goldenbridge = React.createClass({
           visible={!this.state.ready}
         />
         <WebViewBridge style={styles.web}
-            ref="webviewbridge"
-            onBridgeMessage={this.sendMessage}
-            source={webPath}
-            javaScriptEnabled={true}
+          ref="webviewbridge"
+          onBridgeMessage={this.sendMessage}
+          source={webPath}
+          javaScriptEnabled={true}
         />
         <AudioPlayer
-            sound={this.activePoint().audio}
-            autoplay={!this.activePoint().visited}
-            onCompletion={this.markPointVisited}
+          background='music'          
+          sound={this.activePoint().audio}
+          autoplay={!this.activePoint().visited}
+          onCompletion={this.markPointVisited}
         />
       </View>
     );
