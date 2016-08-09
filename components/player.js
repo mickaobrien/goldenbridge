@@ -22,6 +22,7 @@ var AudioPlayer = React.createClass({
       playing: false,
       currentTime: 0,
       progress: 0,
+      fading: false,
     };
   },
 
@@ -48,19 +49,45 @@ var AudioPlayer = React.createClass({
   },
 
   componentWillReceiveProps: function(props) {
-    if (!props.sound && this.timer) {
-        clearInterval(this.timer);
+    // TODO - fix this mess! ugh...
+    // No new sound, existing sound not playing -> clean up
+    if (!props.sound && this.timer && this.state.sound && !this.state.playing) {
+        this.clearInterval(this.timer);
         this.setState({progress: 0});
-        if (this.state.sound) {
-          this.state.sound.release();
-        }
+        this.stopSpeech();
     }
 
+    // No new sound but existing sound is playing -> fadeout
+    if (!props.sound && this.state.playing && !this.state.fading) {
+      this.fadeOut(this.state.sound);
+    }
+
+    // No new sound or same sound as we have already
     if (!props.sound || props.sound == this.props.sound) return;
-    //TODO stop playing audio if !props.sound && this.props.sound
-    if (this.state.sound) this.state.sound.stop();
+
+    // New sound but existing sound is fading -> stop fading
+    if (props.sound && this.state.fading) {
+      this.stopFade();
+    }
+
+    // New sound matches sound fading out -> set volume to 1 and exit
+    if (this.state.sound && props.sound === this.state.sound._filename && this.state.fading) {
+      this.state.sound.setVolume(1);
+      return;
+    }
+
+    // New sound and sound already exists -> stop and release memory
+    if (props.sound && this.state.sound) {
+      this.stopSpeech();
+    }
+
     this.playSpeech(props.sound, props.autoplay);
-    //TODO make this a separate method and stop when audio stops
+
+    this.startPlayerTimer();
+
+  },
+
+  startPlayerTimer: function() {
     this.timer = this.setInterval(function() {
       if (this.state.sound) {
         this.state.sound.getCurrentTime((time, isPlaying) => {
@@ -80,6 +107,30 @@ var AudioPlayer = React.createClass({
     }, 100);
   },
 
+  fadeOut: function() {
+    this.setState({fading: true});
+    this.fadeInterval = this.setInterval(function() {
+      var volume = this.state.sound.getVolume();
+      if (volume > 0.01) {
+        this.state.sound.setVolume(volume - 0.1);
+      } else {
+        this.stopFade();
+        this.stopSpeech();
+      }
+    }, 500);
+  },
+
+  stopFade: function() {
+    this.clearInterval(this.fadeInterval);
+    this.setState({fading: false});
+  },
+
+  stopSpeech: function() {
+    if (this.state.sound) {
+      this.state.sound.stop().release();
+    }
+  },
+
   playBackgroundAudio: function(filename) {
     this.loadSound(filename, true, -1, 'background');
   },
@@ -95,8 +146,7 @@ var AudioPlayer = React.createClass({
       if (error) {
         console.log('failed to load the sound', error);
       } else { // loaded successfully
-        console.log('duration in seconds: ' + sound.getDuration() +
-                    'number of channels: ' + sound.getNumberOfChannels());
+        console.log('loaded sound: ' + filename);
         if (Platform.OS === 'ios') { sound.setCategory('Playback'); }
         sound.setNumberOfLoops(numberOfLoops);
         this.setState({[stateName]: sound});
