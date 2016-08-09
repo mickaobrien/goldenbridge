@@ -123,14 +123,14 @@ var Goldenbridge = React.createClass({
 
   titleText() {
     if (this.state.activeKey) {
-      return this.state.points[this.state.activeKey].title;
+      return this.state.points[this.state.activeKey].title.replace('`', '\'');
     }
     return 'Echoes From The Past';
   },
 
   subtitleText() {
     if (this.state.activeKey) {
-      return this.state.points[this.state.activeKey].citation;
+      return this.state.points[this.state.activeKey].citation.replace('`', '\'');
     }
     return 'Goldenbridge Industrial School';
   },
