@@ -74,9 +74,9 @@
         },
 
         luasIcon: function() {
-          var icon = L.icon({iconUrl: 'tram.png', iconSize: [24, 24]});
+          var icon = L.icon({iconUrl: 'tram.png', iconSize: [20, 20]});
           var stopLocation = [53.335336, -6.318272];
-          return L.marker(stopLocation, {icon: icon});
+          return L.marker(stopLocation, {icon: icon}).bindPopup('Drimnagh Luas Stop');
         },
 
         drawCircle: function(location, options) {
