@@ -30,10 +30,14 @@ var AudioPlayer = React.createClass({
   },
 
   componentWillUnmount() {
-    this.state.sound.stop();
-    this.state.sound.release();
-    this.state.background.stop();
-    this.state.background.release();
+    if (this.state.sound) {
+      this.state.sound.stop();
+      this.state.sound.release();
+    }
+    if (this.state.background) {
+      this.state.background.stop();
+      this.state.background.release();
+    }
   },
 
   convertFilename(filename) {
