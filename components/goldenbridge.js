@@ -143,7 +143,7 @@ var Goldenbridge = React.createClass({
           onPositionUpdate={this.updatePosition}
         />
         <View style={styles.titlebar}>
-          <TouchableOpacity onPress={this.goBack}>
+          <TouchableOpacity onPress={this.goBack} style={styles.backTouchableArea}>
             <Icon name={'chevron-left'} style={styles.backButton} />
           </TouchableOpacity>
           <View style={styles.titleTextBar}>
@@ -154,7 +154,7 @@ var Goldenbridge = React.createClass({
               {this.subtitleText()}
             </Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity style={styles.backTouchableArea}>
             <Icon name={'chevron-left'} style={[styles.backButton, {height: 0.001}]} />
           </TouchableOpacity>
         </View>
@@ -224,6 +224,10 @@ const styles = StyleSheet.create({
   backButton: {
     fontSize: 16,
   },
+  backTouchableArea: {
+    padding: 8,
+    width: 50,
+  }
 });
 
 module.exports = Goldenbridge;
