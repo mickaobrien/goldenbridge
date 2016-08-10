@@ -30,6 +30,7 @@ var Goldenbridge = React.createClass({
       position: {coords: {latitude:0, longitude:0}},
       activePoint: null,
       ready: false,
+      dataLoaded: false,
     };
   },
 
@@ -59,6 +60,7 @@ var Goldenbridge = React.createClass({
       (visited) => {
         var visited = visited || [];
         this.setState({visited});
+        this.setState({dataLoaded: true});
       }
     );
   },
@@ -159,8 +161,9 @@ var Goldenbridge = React.createClass({
           </TouchableOpacity>
         </View>
         <IntroductionModal
+          visited={this.state.visited}
           onClose={this.setReady}
-          visible={!this.state.ready}
+          visible={this.state.dataLoaded && !this.state.ready}
         />
         <WebViewBridge style={styles.web}
           ref="webviewbridge"

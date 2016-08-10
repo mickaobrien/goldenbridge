@@ -1,5 +1,6 @@
 'use strict';
 
+import _ from 'lodash';
 import React from 'react';
 import {
   Modal,
@@ -15,6 +16,17 @@ var IntroductionModal = React.createClass({
     this.props.onClose();
   },
 
+  introText: function() {
+    if (this.props.visited.length) {
+      var numberVisited = _.uniq(this.props.visited).length;
+      var numberRemaining = 15 - numberVisited;
+      var pts = (numberRemaining > 1) ? 'locations' : 'location';
+      return `You have ${numberRemaining} ${pts} left to visit.`;
+    } else {
+      return 'There are a total of 15 locations to visit.';
+    }
+  },
+
   render: function() {
     return (
       <Modal
@@ -24,10 +36,15 @@ var IntroductionModal = React.createClass({
         onRequestClose={this.hideModal}
       >
         <View style={styles.modal}>
-          <Text style={styles.heading}>Introduction</Text>
+          <Text style={styles.heading}>Before you start...</Text>
           <View style={styles.textBlock}>
             <Text style={styles.text}>
-              This is an introduction to the app. Maybe some background on the project or a link to further information. Whatever you want.
+              This app uses your phone's GPS to trigger audio at certain locations so make sure you have your GPS enabled and your headphones plugged in.
+            </Text>
+          </View>
+          <View style={styles.textBlock}>
+            <Text style={styles.text}>
+              {this.introText()}
             </Text>
           </View>
           <View style={styles.textBlock}>
@@ -35,20 +52,9 @@ var IntroductionModal = React.createClass({
               Walk to the dots on the map to hear the audio.
             </Text>
           </View>
-          <View style={styles.textBlock}>
-            <Text style={styles.text}>
-              Before you start make sure:
-            </Text>
-            <Text style={styles.bullet}>
-              <Icon name={'headphones'} style={styles.icon} /> your <Text style={styles.emphasis}>headphones</Text> are plugged in
-            </Text>
-            <Text style={styles.bullet}>
-              <Icon name={'map-marker'} style={styles.icon}/>   your <Text style={styles.emphasis}>GPS</Text> is enabled
-            </Text>
-          </View>
           <TouchableHighlight style={styles.button}
             onPress={this.hideModal}>
-            <Text style={styles.buttonText}>Let's Begin</Text>
+            <Text style={styles.buttonText}>Start</Text>
           </TouchableHighlight>
         </View>
       </Modal>
@@ -62,12 +68,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(55, 55, 55, 0.95)',
     alignItems: 'center',
     margin: 30,
-    marginTop: 60,
+    marginTop: 80,
     marginBottom: 60,
   },
   heading: {
     color: '#EEEEEE',
-    fontSize: 20,
+    fontSize: 22,
     marginTop: 10,
     marginBottom: 10,
   },
@@ -82,19 +88,17 @@ const styles = StyleSheet.create({
     marginRight: 10,
     textAlign: 'center',
   },
-  bullet: {
-    color: '#EEEEEE',
-    fontSize: 16,
-    marginLeft: 20,
-    marginRight: 20,
-  },
   button: {
     marginTop: 20,
+    padding: 4,
     backgroundColor: '#B9C7D4',
+    alignItems: 'center',
+    borderRadius: 4,
   },
   buttonText: {
     color: '#0A1E3F',
     margin: 10,
+    fontSize: 16,
   },
   emphasis: {
     textDecorationLine: 'underline',
