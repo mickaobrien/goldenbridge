@@ -760,7 +760,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldenbridge.echoes;
 				PRODUCT_NAME = Goldenbridge;
-				PROVISIONING_PROFILE = "bf925a1c-6c93-4535-9c03-5629924e1293";
+				PROVISIONING_PROFILE = "398db6b0-b296-4706-900b-3509d887dee4";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -785,7 +785,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldenbridge.echoes;
 				PRODUCT_NAME = Goldenbridge;
-				PROVISIONING_PROFILE = "bf925a1c-6c93-4535-9c03-5629924e1293";
+				PROVISIONING_PROFILE = "398db6b0-b296-4706-900b-3509d887dee4";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
