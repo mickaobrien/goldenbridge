@@ -72,13 +72,16 @@
         },
 
         drawCustomTileLayer: function() {
-          this.removeCustomTileLayer();
-          this.customTileLayer = L.tileLayer('./tiles/old_map/{z}/{x}/{y}.png').addTo(this.map);
+          if (!this.oldTilesVisible) {
+            this.customTileLayer = L.tileLayer('./tiles/old_map/{z}/{x}/{y}.png').addTo(this.map);
+            this.oldTilesVisible = true;
+          }
         },
 
         removeCustomTileLayer: function() {
-          if (this.customTileLayer) {
+          if (this.oldTilesVisible && this.customTileLayer) {
             this.map.removeLayer(this.customTileLayer);
+            this.oldTilesVisible = false;
           }
         },
 
@@ -130,12 +133,14 @@
           if (this.activePoint) {
             this.map.removeLayer(this.activePoint);
           }
-          this.removeCustomTileLayer();
           if (this.activeKey) {
             var activePoint = this.locations[this.activeKey];
             var coordinates = activePoint.coordinates;
             this.activePoint = this.drawCircle({coordinates: coordinates}, {color: '#aaaaaa', radius: 15});
             this.drawCustomTileLayer();
+          }
+          if (!this.activeKey) {
+            this.removeCustomTileLayer();
           }
         },
 
