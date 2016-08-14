@@ -28,7 +28,7 @@
         var h = window.innerHeight;
         document.querySelector('#map').style.height = h + 'px';
       }
-      makeFullHeight();
+      window.onload = makeFullHeight;
       window.onresize = makeFullHeight;
     </script>
     <script>
