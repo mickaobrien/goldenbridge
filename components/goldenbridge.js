@@ -85,6 +85,7 @@ var Goldenbridge = React.createClass({
   },
 
   updatePosition(position) {
+    if (!this.refs.webviewbridge) return;
     // Don't activate anything until the user is ready
     if (!this.state.ready) {
       this.sendMessage({currentPosition: position.coords, activeKey: null});
