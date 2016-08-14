@@ -42,7 +42,7 @@ var Geolocation = React.createClass({
     // Hacky way to get iOS to update position regularly
     // TODO fix!
     if (Platform.OS === 'ios') {
-      this.setInterval(this.getPosition, 500);
+      this.watchInterval = this.setInterval(this.getPosition, 500);
     } else {
       this.watchPosition();
     }
@@ -51,6 +51,9 @@ var Geolocation = React.createClass({
   componentWillUnmount: function() {
     if (this.watchID) {
       navigator.geolocation.clearWatch(this.watchID);
+    }
+    if (this.watchInterval) {
+      this.clearInterval(this.watchInterval);
     }
   },
 
