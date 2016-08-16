@@ -24,6 +24,7 @@
 		783AC68B1D4B72850052E192 /* libReact-Native-Webview-Bridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 783AC68A1D4B72760052E192 /* libReact-Native-Webview-Bridge.a */; };
 		783AC6921D4B74200052E192 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 783AC6911D4B74170052E192 /* libRNSound.a */; };
 		783AC6941D4B77860052E192 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 783AC6931D4B77860052E192 /* FontAwesome.ttf */; };
+		784412F61D63C89100753C95 /* web in Resources */ = {isa = PBXBuildFile; fileRef = 784412F51D63C89100753C95 /* web */; };
 		7857FAD61D4FF3D900252B0E /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAC61D4FF3D900252B0E /* music.mp3 */; };
 		7857FAD71D4FF3D900252B0E /* tr1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAC71D4FF3D900252B0E /* tr1.mp3 */; };
 		7857FAD81D4FF3D900252B0E /* tr2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7857FAC81D4FF3D900252B0E /* tr2.mp3 */; };
@@ -161,6 +162,7 @@
 		783AC6851D4B72760052E192 /* React-Native-Webview-Bridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "React-Native-Webview-Bridge.xcodeproj"; path = "../node_modules/react-native-webview-bridge/ios/React-Native-Webview-Bridge.xcodeproj"; sourceTree = "<group>"; };
 		783AC68C1D4B74170052E192 /* RNSound.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		783AC6931D4B77860052E192 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		784412F51D63C89100753C95 /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; path = web; sourceTree = "<group>"; };
 		7857FAC61D4FF3D900252B0E /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 		7857FAC71D4FF3D900252B0E /* tr1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr1.mp3; sourceTree = "<group>"; };
 		7857FAC81D4FF3D900252B0E /* tr2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tr2.mp3; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 		13B07FAE1A68108700A75B9A /* Goldenbridge */ = {
 			isa = PBXGroup;
 			children = (
+				784412F51D63C89100753C95 /* web */,
 				78B64FE01D501099005D3E7E /* Default-568h@2x.png */,
 				7857FAC61D4FF3D900252B0E /* music.mp3 */,
 				7857FAC71D4FF3D900252B0E /* tr1.mp3 */,
@@ -630,6 +633,7 @@
 				7857FADB1D4FF3D900252B0E /* tr5.mp3 in Resources */,
 				7857FAD91D4FF3D900252B0E /* tr3.mp3 in Resources */,
 				7857FAD71D4FF3D900252B0E /* tr1.mp3 in Resources */,
+				784412F61D63C89100753C95 /* web in Resources */,
 				7857FADE1D4FF3D900252B0E /* tr8.mp3 in Resources */,
 				7857FAD61D4FF3D900252B0E /* music.mp3 in Resources */,
 				783AC6941D4B77860052E192 /* FontAwesome.ttf in Resources */,
@@ -760,7 +764,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldenbridge.echoes;
 				PRODUCT_NAME = Goldenbridge;
-				PROVISIONING_PROFILE = "398db6b0-b296-4706-900b-3509d887dee4";
+				PROVISIONING_PROFILE = "bf925a1c-6c93-4535-9c03-5629924e1293";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -785,7 +789,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.goldenbridge.echoes;
 				PRODUCT_NAME = Goldenbridge;
-				PROVISIONING_PROFILE = "398db6b0-b296-4706-900b-3509d887dee4";
+				PROVISIONING_PROFILE = "bf925a1c-6c93-4535-9c03-5629924e1293";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
