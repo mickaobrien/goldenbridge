@@ -1,0 +1,181 @@
+<html>
+  <head>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+    <link href='css/map.css' rel='stylesheet' />
+    <style type="text/css">
+      body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+        margin:0;
+        padding:0;
+      }
+      html,body {
+        margin:0;
+        padding:0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="map"></div>
+    <script>
+      function makeFullHeight() {
+        var h = window.innerHeight;
+        document.querySelector('#map').style.height = h + 'px';
+      }
+      window.onload = makeFullHeight;
+      window.onresize = makeFullHeight;
+    </script>
+    <script>
+      var Map = {
+
+        init: function() {
+          L.mapbox.accessToken = 'pk.eyJ1IjoiLW1pY2stIiwiYSI6InBoM0pvdXMifQ.cZxAMQ7D-nENcB5SPagqpg';
+          this.drawMap();
+          var positionStyle = {color: 'blue', radius: 3, fillOpacity: 0.9}
+          this.currentPosition = this.drawCircle({coordinates: [0, 0]}, positionStyle);
+        },
+
+        drawMap: function() {
+          var map = L.mapbox.map('map', '', {maxZoom: 17, minZoom: 16});
+          this.map = map;
+          map.zoomControl.removeFrom(map);
+
+          this.setMapPosition();
+          //this.setMapCork();
+
+          this.luasIcon().addTo(map);
+
+          var localTileLayer = L.tileLayer('./tiles/256/{z}/{x}/{y}', {
+            attribution: 'Data by OpenStreetMap, under CC BY SA.'
+          }).addTo(map);
+          //var onlineTileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/-mick-/ciqdnbv83000ie4mdhs0szmcs/tiles/256/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken).addTo(map);
+        },
+
+        setMapPosition: function() {
+          this.map.setView([53.336981, -6.319574], 16);
+
+          // Restrict panning
+          var southWest = L.latLng(53.334813, -6.32172);
+          var northEast = L.latLng(53.340053, -6.316946);
+          var bounds = L.latLngBounds(southWest, northEast);
+          this.map.setMaxBounds(bounds);
+        },
+
+        setMapCork: function() {
+          this.map.setView([51.891813, -8.43866213], 16);
+        },
+
+        drawCustomTileLayer: function() {
+          if (!this.oldTilesVisible) {
+            this.customTileLayer = L.tileLayer('./tiles/old_map/{z}/{x}/{y}.png').addTo(this.map);
+            this.oldTilesVisible = true;
+          }
+        },
+
+        removeCustomTileLayer: function() {
+          if (this.oldTilesVisible && this.customTileLayer) {
+            this.map.removeLayer(this.customTileLayer);
+            this.oldTilesVisible = false;
+          }
+        },
+
+        luasIcon: function() {
+          var icon = L.icon({iconUrl: 'tram.png', iconSize: [20, 20]});
+          var stopLocation = [53.335336, -6.318272];
+          return L.marker(stopLocation, {icon: icon}).bindPopup('Drimnagh Luas Stop');
+        },
+
+        drawCircle: function(location, options) {
+          var markerOptions = options || {color: 'gray', fillOpacity: '0.9', stroke: false, radius: 5};
+          var circle = L.circleMarker(location.coordinates, markerOptions);
+          circle.addTo(this.map);
+          return circle;
+        },
+
+        removeDots: function() {
+          if (this.points) {
+            var map = this.map;
+            this.points.forEach(function(point) {
+              map.removeLayer(point);
+            });
+          }
+        },
+
+        drawDots: function(locations) {
+          this.removeDots();
+          var points = [];
+          var markerStyle = {fillOpacity: '0.8', stroke: false, radius: 5};
+          Object.keys(locations).forEach(function(key) {
+            var color = locations[key].visited ? '#4F4F52' : '#B87333';
+            markerStyle.color = color;
+            points.push(Map.drawCircle(locations[key], markerStyle));
+          });
+          this.points = points;
+        },
+
+        activeKey: null,
+
+        activePoint: function() {
+          if (this.activeKey) {
+            return this.points[this.activeKey - 1];
+          } else {
+            return null;
+          }
+        },
+
+        updateActiveMarker: function() {
+          if (this.activePoint) {
+            this.map.removeLayer(this.activePoint);
+          }
+          if (this.activeKey) {
+            var activePoint = this.locations[this.activeKey];
+            var coordinates = activePoint.coordinates;
+            this.activePoint = this.drawCircle({coordinates: coordinates}, {color: '#aaaaaa', radius: 15});
+            this.drawCustomTileLayer();
+          }
+          if (!this.activeKey) {
+            this.removeCustomTileLayer();
+          }
+        },
+
+      }
+
+      Map.init();
+
+      function whenAvailable(name, callback) {
+          var interval = 10; // ms
+          window.setTimeout(function() {
+              if (window[name]) {
+                  callback(window[name]);
+              } else {
+                  window.setTimeout(arguments.callee, interval);
+              }
+          }, interval);
+      }
+
+      whenAvailable('WebViewBridge', function() {
+        WebViewBridge.onMessage = function(message) {
+          var data = JSON.parse(message);
+          if (message.indexOf('currentPosition') > -1) {
+            var coordinates = [data.currentPosition.latitude, data.currentPosition.longitude];
+            Map.currentPosition.setLatLng(coordinates);
+            Map.activeKey = data.activeKey;
+          } else {
+            Map.locations = data;
+            Map.drawDots(data);
+          }
+
+          Map.updateActiveMarker();
+
+        }
+        WebViewBridge.send('ready');
+      });
+    </script>
+  </body>
+</html>
