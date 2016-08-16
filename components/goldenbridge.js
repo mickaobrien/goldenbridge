@@ -139,7 +139,7 @@ var Goldenbridge = React.createClass({
   },
 
   render() {
-    var webPath = (Platform.OS === 'android') ? {uri: 'file:///android_asset/web/test.html'} : require('../web/test.html');
+    var webPath = (Platform.OS === 'android') ? {uri: 'file:///android_asset/web/test.html'} : {uri: 'web/test.html'};
     return (
       <View style={styles.container}>
         <Geolocation
