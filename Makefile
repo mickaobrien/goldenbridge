@@ -6,6 +6,7 @@ android: assets
 
 assets:
 	cp -r web/* android/app/src/main/assets/web/
+	cp -r web/* ios/web/
 
 ios-bundle:
 	react-native bundle --dev false --assets-dest ./ios --platform ios --entry-file ./index.ios.js --bundle-output ./ios/main.jsbundle
