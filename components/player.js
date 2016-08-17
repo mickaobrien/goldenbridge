@@ -117,7 +117,7 @@ var AudioPlayer = React.createClass({
         this.stopFade();
         this.stopSpeech();
       }
-    }, 500);
+    }, 400);
   },
 
   stopFade: function() {
