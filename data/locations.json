@@ -1,107 +1,107 @@
 {
-    1: {
+    "1": {
         "key": "1",
         "coordinates": [53.335703727844745, -6.317653656005859],
         "audio": "tr1",
         "title": "The Ryan Report",
-        "citation": "Chapter 1, 1.01-1.05",
+        "citation": "Chapter 1, 1.01-1.05"
     },
-    2: {
+    "2": {
         "key": "2",
         "coordinates": [53.33628991496072, -6.317787766456604],
         "audio": "tr2",
         "title": "Irish Industrial Schools",
-        "citation": "Chapter 2, 2.12-2.16; Chapter 3, 3.01",
+        "citation": "Chapter 2, 2.12-2.16; Chapter 3, 3.01"
     },
-    3: {
+    "3": {
         "key": "3",
         "coordinates": [53.337157969606594, -6.317964792251586],
         "audio": "tr3",
         "title": "St. Vincent`s Industrial School",
-        "citation": "Chapter 7, 7.01-7.13",
+        "citation": "Chapter 7, 7.01-7.13"
     },
-    4: {
+    "4": {
         "key": "4",
         "coordinates": [53.337113,-6.318609],
         "audio": "tr4",
         "title": "At The Gates",
-        "citation": "Chapter 7, 7.294-7.298",
+        "citation": "Chapter 7, 7.294-7.298"
     },
-    5: {
+    "5": {
         "key": "5",
         "coordinates": [53.337065,-6.319204],
         "audio": "tr5",
         "title": "The Classroom",
-        "citation": "Chapter 7, 7.430-7.478",
+        "citation": "Chapter 7, 7.430-7.478"
     },
-    6: {
+    "6": {
         "key": "6",
         "coordinates": [53.337078,-6.320052],
         "audio": "tr6",
         "title": "Scrubbing",
-        "citation": "Chapter 6, Section 6.38; Chapter 7, 7.498- 7.510",
+        "citation": "Section 6.38; Section 7.498-7.510"
     },
-    7: {
+    "7": {
         "key": "7",
         "coordinates": [53.33669,-6.320223],
         "audio": "tr7",
         "title": "The Landing",
-        "citation": "Chapter 7, 7.93-7.102",
+        "citation": "Chapter 7, 7.93-7.102"
     },
-    8: {
+    "8": {
         "key": "8",
-        "coordinates": [53.336486,-6.3207352],
+        "coordinates": [53.336468, -6.320156],
         "audio": "tr8",
         "title": "Inspections",
-        "citation": "Chapter 6, 6.39; Chapter 7, 7.351",
+        "citation": "Chapter 6, 6.39; Chapter 7, 7.351"
     },
-    9: {
+    "9": {
         "key": "9",
         "coordinates": [53.337991,-6.318126],
         "audio": "tr9",
         "title": "Rosary Bead Making",
-        "citation": "Chapter 7, 7.233-7.235",
+        "citation": "Chapter 7, 7.233-7.235"
     },
-    10: {
+    "10": {
         "key": "10",
         "coordinates": [53.338407,-6.318217],
         "audio": "tr10",
         "title": "Bead Classes",
-        "citation": "Chapter 7,  7.252-7.257",
+        "citation": "Chapter 7, 7.252-7.257"
     },
-    11: {
+    "11": {
         "key": "11",
         "coordinates": [53.338654,-6.318356],
         "audio": "tr11",
         "title": "`Scraps`",
-        "citation": "Chapter 7, 7.365; Chapter 7, 7.731-7.732",
+        "citation": "Chapter 7, 7.365; 7.731-7.732"
     },
-    12: {
+    "12": {
         "key": "12",
         "coordinates": [53.338417,-6.319107],
         "audio": "tr12",
         "title": "Water",
-        "citation": "Chapter 7, 7.377-7.383",
+        "citation": "Chapter 7, 7.377-7.383"
     },
-    13: {
+    "13": {
         "key": "13",
         "coordinates": [53.338212,-6.319848],
         "audio": "tr13",
         "title": "Small Gestures of Kindness",
-        "citation": "Chapter 6, 6.07; Chapter 7, 7.238",
+        "citation": "Chapter 6, 6.07; Chapter 7, 7.238"
     },
-    14: {
+    "14": {
         "key": "14",
         "coordinates": [53.338007,-6.320588],
         "audio": "tr14",
         "title": "Lessons of the Past",
-        "citation": "Preface",
+        "citation": "Preface"
     },
-    15: {
+    "15": {
         "key": "15",
         "coordinates": [53.337895,-6.321178],
         "audio": "tr15",
         "title": "We the Interviewers...",
-        "citation": "Chapter 3, 3.23-3.29",
-    },
+        "citation": "Chapter 3, 3.23-3.29"
+    }
 }
