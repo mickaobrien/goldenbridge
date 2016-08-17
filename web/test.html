@@ -28,13 +28,13 @@
         var h = window.innerHeight;
         document.querySelector('#map').style.height = h + 'px';
       }
-      window.onload = makeFullHeight;
       window.onresize = makeFullHeight;
     </script>
     <script>
       var Map = {
 
         init: function() {
+          makeFullHeight();
           L.mapbox.accessToken = 'pk.eyJ1IjoiLW1pY2stIiwiYSI6InBoM0pvdXMifQ.cZxAMQ7D-nENcB5SPagqpg';
           this.drawMap();
           var positionStyle = {color: 'blue', radius: 3, fillOpacity: 0.9}
