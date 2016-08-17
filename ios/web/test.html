@@ -28,13 +28,13 @@
         var h = window.innerHeight;
         document.querySelector('#map').style.height = h + 'px';
       }
-      window.onload = makeFullHeight;
       window.onresize = makeFullHeight;
     </script>
     <script>
       var Map = {
 
         init: function() {
+          makeFullHeight();
           L.mapbox.accessToken = 'pk.eyJ1IjoiLW1pY2stIiwiYSI6InBoM0pvdXMifQ.cZxAMQ7D-nENcB5SPagqpg';
           this.drawMap();
           var positionStyle = {color: 'blue', radius: 3, fillOpacity: 0.9}
@@ -54,7 +54,7 @@
           var localTileLayer = L.tileLayer('./tiles/256/{z}/{x}/{y}', {
             attribution: 'Data by OpenStreetMap, under CC BY SA.'
           }).addTo(map);
-          //var onlineTileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/-mick-/ciqdnbv83000ie4mdhs0szmcs/tiles/256/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken).addTo(map);
+          var onlineTileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/-mick-/ciqdnbv83000ie4mdhs0szmcs/tiles/256/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken).addTo(map);
         },
 
         setMapPosition: function() {
