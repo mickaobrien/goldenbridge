@@ -173,7 +173,7 @@ var Goldenbridge = React.createClass({
           javaScriptEnabled={true}
         />
         <AudioPlayer
-          background='music'          
+          background='music'
           sound={this.activePoint().audio}
           autoplay={!this.activePoint().visited}
           onCompletion={this.markPointVisited}
