@@ -28,10 +28,11 @@
         var h = window.innerHeight;
         document.querySelector('#map').style.height = h + 'px';
       }
-      makeFullHeight();
       var userAgent = navigator.userAgent.toLowerCase();
-      if ('iphone' in userAgent) {
+      if (userAgent.indexOf('iphone') > -1) {
         window.onload = makeFullHeight;
+      } else {
+        makeFullHeight();
       }
       window.onresize = makeFullHeight;
     </script>
