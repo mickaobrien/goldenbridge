@@ -1,17 +1,17 @@
 {
-  "name": "custom_map",
+  "name": "TEST",
   "version": "1.1.0",
   "description": "",
   "type": "overlay",
   "format": "png",
-  "minzoom": "15",
+  "minzoom": "16",
   "maxzoom": "17",
   "scale": "1.000000",
   "profile": "mercator",
-  "bounds": [-6.32139320, 53.33493813, -6.31615558, 53.33885531],
+  "bounds": [-6.32389891, 53.33487655, -6.31467939, 53.33895172],
   "crs": "EPSG:900913",
   "proj4": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs",
-  "extent": [-703694.27180832, 7045194.32394139, -703111.22301803, 7045924.60727467],
+  "extent": [-703973.20683264, 7045182.84474169, -702946.89428790, 7045942.58259948],
   "tile_matrix": [
   {
     "id": "0",
