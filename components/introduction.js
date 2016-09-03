@@ -38,6 +38,9 @@ var IntroductionScreen = React.createClass({
           <Text style={styles.paragraph}>
             For more information on Goldenbridge Industrial School and a downloadable version of the audio see please visit <Link style={styles.paragraph} url='https://echoesfromthepast.org/' text='echoesfromthepast.org' />.
           </Text>
+          <Text style={styles.paragraph}>
+            If you have been affected in any way by the contents of this app you can contact <Link style={styles.paragraph} url='https://connectcounselling.ie/' text='Connect' /> on Freephone <Link url='tel:1800477477' text='1800 477 477' />, or a number of other support groups listed on <Link style={styles.paragraph} url='https://echoesfromthepast.org/supportgroups' text='echoesfromthepast.org/supportgroups' />.
+          </Text>
           <TouchableHighlight style={styles.button}
             onPress={this.startApp}>
             <Text style={styles.buttonText}>
