@@ -3,6 +3,7 @@
 import Icon from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
 import {
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -47,6 +48,18 @@ var IntroductionScreen = React.createClass({
               BEGIN  <Icon style={styles.buttonIcon} name={'chevron-right'} />
             </Text>
           </TouchableHighlight>
+          <Text style={styles.supported_heading}>
+            Supported By:
+          </Text>
+          <View style={styles.logo_row}>
+            <Image style={styles.logo_image} resizeMode='center' source={require('../images/irc_logo.png')}></Image>
+          </View>
+          <View style={styles.logo_row}>
+            <Image style={styles.logo_image} resizeMode='center' source={require('../images/ucd_logo.png')}></Image>
+          </View>
+          <View style={styles.logo_row}>
+            <Image style={styles.logo_image} resizeMode='center' source={require('../images/industrial_memories_logo.png')}></Image>
+          </View>
         </View>
       </ScrollView>
     );
@@ -93,6 +106,18 @@ const styles = StyleSheet.create({
   },
   buttonIcon: {
     fontSize: 16,
+  },
+  supported_heading: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: '#222222',
+  },
+  logo_row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logo_image: {
   },
 });
 
