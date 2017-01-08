@@ -42,6 +42,9 @@ var IntroductionScreen = React.createClass({
           <Text style={styles.paragraph}>
             If you have been affected in any way by the contents of this app you can contact <Link style={styles.paragraph} url='https://connectcounselling.ie/' text='Connect' /> on Freephone <Link url='tel:1800477477' text='1800 477 477' />, or a number of other support groups listed on <Link style={styles.paragraph} url='https://echoesfromthepast.org/supportgroups' text='echoesfromthepast.org/supportgroups' />.
           </Text>
+          <Text style={styles.paragraph}>
+            As in all urban environments, mobile phones can be easy targets for thieves, please exercise caution when using this app. This app is recommended for use during the hours of daylight. Some of the locations featured in this app are situated relatively close to residential areas. We would ask users of this app to respect the privacy and personal property of local residents.
+          </Text>
           <TouchableHighlight style={styles.button}
             onPress={this.startApp}>
             <Text style={styles.buttonText}>
