@@ -61,7 +61,7 @@ var IntroductionScreen = React.createClass({
             <Image style={styles.logo_image} resizeMode='center' source={require('../images/ucd_logo.png')}></Image>
           </View>
           <View style={styles.logo_row}>
-            <Image style={styles.logo_image} resizeMode='center' source={require('../images/industrial_memories_logo.png')}></Image>
+            <Image style={styles.logo_image} resizeMode='center' source={require('../images/industrial_memories_logo.jpg')}></Image>
           </View>
         </View>
       </ScrollView>
